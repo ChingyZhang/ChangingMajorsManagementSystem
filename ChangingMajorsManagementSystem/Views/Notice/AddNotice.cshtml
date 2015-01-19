@@ -1,0 +1,144 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('#uploadify2').uploadify({
+            //以下参数均是可选
+            'buttonImg': '../../Scripts/uploadify1.4.6/selectfile.png',
+            'uploader': '../../Scripts/uploadify1.4.6/uploadify.swf', //指定上传控件的主体文件，默认‘uploader.swf’
+            //            'folder': 'Attachment', //要上传到的服务器路径，默认‘/’
+            'script': '/Notice/UploadFile', //上传文件的后台处理页面(这个没有页面,是一个contentResult 这个页面要写...
+            'cancelImg': '../../Scripts/uploadify1.4.6/cancel.png', //指定取消上传的图片，默认‘cancel.png’
+            'width': 78,
+            'height': 22,
+            'auto': false, //选定文件后是否自动上传，默认false
+            'method': 'POST',
+            'queueID': 'fileQueue2',
+            'multi': true, //是否允许同时上传多文件，默认false
+            'fileDesc': 'xlsx文件,xls文件,doc文件,docx文件,rar文件', //出现在上传对话框中的文件类型描述
+            'fileExt': '*.xlsx;*.xls;*.doc;*.docx;*.rar;', //控制可上传文件的扩展名，文件启用本项时需同时声明fileDesc
+            'sizeLimit': 1024 * 1024 * 1024, //控制上传文件的大小，单位byte
+            'simUploadLimit': 1, //多文件上传时，同时上传文件数目限制
+            'queueSizeLimit': 1,
+            'onCancel': function () {
+
+            },
+            'onComplete': fun,
+            'onError': function (event, queueID, fileObj) {
+                alert("文件:" + fileObj.name + " 上传失败");
+            }
+        });
+    });
+
+    function fun(event, queueID, fileObj, response, data) {
+        if (response != "") {
+            $("#path").val(response);
+            $("#fileQueue2").find(".cancel").remove();
+            showInfo("成功上传" + response, true); //showInfo方法设置上传结果
+            //alert($("#fileQueue2").length);
+
+        }
+        else {
+            showInfo("文件" + fileObj.name + "上传出错", false);
+        }
+    }
+</script>
+<div class="increase_inform">
+    <div class="searchbox">
+        <table cellpadding="5px" cellspacing="5px" border="0px">
+            <tr>
+                <td>
+                    公告主题:
+                </td>
+                <td>
+                    <div class="input">
+                        <div class="subinput">
+                            <input type="text" id="NoticeTitle" value="" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="padding-top: 10px;">
+                    公告内容:
+                </td>
+                <td>
+                    <textarea id="fckeditor" name="fckeditor" cols="50" rows="2"></textarea>
+                    <script type="text/javascript">
+
+                        var editor;
+
+                        // 防止二次replace同一个实例失败
+                        if (CKEDITOR.instances['fckeditor']) {
+                            CKEDITOR.remove(CKEDITOR.instances['fckeditor']);
+                        }
+                        editor = CKEDITOR.replace('fckeditor');
+                        CKFinder.setupCKEditor(editor, '../Scripts/fckeditor/ckfinder/');
+
+                        function alertfck() {
+                            var path = $("#path").val();
+                            var data = CKEDITOR.tools.htmlEncode(editor.getData());
+                            var text = editor.document.getBody().getText();
+                            var title = $("#NoticeTitle").val();
+                            if (title == "") {
+                                alert("主题不能为空");
+                                return;
+                            }
+                            //salert(title);
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Notice/Submit',
+                                data: { Fckcontext: data, Fckcontext2: text, noticeTitle: title, FilePath: path },
+                                success: function (data) {
+                                    $('#ui-dialog').html(data.Msg);
+                                    $('#ui-dialog').dialog({
+                                        show: "explode",
+                                        hide: "explode",
+                                        resizable: false,
+                                        title: "提示"
+                                    });
+                                    editor.setData(data.contents);
+                                    //                            $('#imtest1').attr("innerHTML", contents);
+                                }
+                            });
+                        }
+                    </script>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    请选择要上传的附件:
+                </td>
+                <td>
+                    <div>
+                        <input type="file" style="padding-left: 0px; cursor: pointer; border: none;" name="uploadify"
+                            id="uploadify2" />
+                    </div>
+                </td>
+                <td style="width: 450px;">
+                    <div id="fileQueue2">
+                    </div>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="button" style="padding-left: 0px; padding-top: 20px; float: left;">
+                        <a href="javascript:$('#uploadify2').uploadifyUpload()"><span>上传文件</span></a></div>
+                    <div class="button" style="padding-left: 20px; padding-top: 20px; float: left;">
+                        <a href="javascript:$('#uploadify2').uploadifyClearQueue()"><span>取消文件</span></a></div>
+                </td>
+                <td>
+                    <input type="hidden" id="path" />
+                </td>
+                <td>
+                    <div class="button">
+                        <a href="#"><span id="sure" onclick="alertfck()">发布公告</span></a></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Start/StartApplyTable',
+            data: {},
+            success: function (data) {
+                $("#StartTable").html(data);
+            }
+        });
+    });
+
+    function Start(tag) {
+        $(tag).attr("onclick", "");
+
+        var year = $("#ApplyYear").val();
+        if (year == null) {
+            alert("时间不能为空");
+            return;
+        }
+        var userid = $("#AAuserid").html();
+        $.ajax({
+            type: 'POST',
+            url: '/Start/StartApply',
+            data: { 'Year': year, 'UserID': userid },
+            success: function (data) {
+                $("#allStart").html(data);
+            }
+        });
+    }
+    $(function () {
+        //archbox 中的 select 事件
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('allStart');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                //alert(selects[i].name);
+                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                //                                $("#select_info_" + selects[i].name).attr("class", "tag_select");
+                //                                $("#options_" + selects[i].name).css("display", "none");
+                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+                //			$('select_info_' + selects[i].name).className = 'tag_select';
+                //			$('options_' + selects[i].name).style.display = 'none';
+            }
+        }
+        //archbox 中的 select 事件
+    });
+    function setValue() {
+        var majorName = $("#select_info_majorNameOfAddStu").attr("value");
+        $("#MajorName").val(majorName);
+        $("#AddStuForm").submit();
+    }
+</script>
+<div id="allStart">
+    <div class="information">
+        <div class="searchbox">
+            <table cellpadding="5px" cellspacing="5px" border="0px">
+                <tr>
+                    <td>
+                        请选择发起报名的年份:
+                    </td>
+                    <td>
+                        <div class="uboxstyle">
+                            @{
+                                var yearApply = ViewData["applyYear"] as SelectList;
+                            }
+                            @if (yearApply != null)
+                            {
+                                @Html.DropDownList("ApplyYear", yearApply)
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        <div class="button">
+                            <a href="#" onclick="Start(this)"><span>发起</span></a></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <div id="StartTable">
+            </div>
+        </div>
+    </div>
+</div>

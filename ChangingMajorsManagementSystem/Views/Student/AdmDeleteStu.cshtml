@@ -1,0 +1,54 @@
+﻿@model ChangingMajorsManagementSystem.Models.UserQueryModel
+<script type="text/javascript">
+    function queryStuId() {
+        $("#AdmDeleteStuForm", $("#PartailAdmDeleteStu")).submit();
+    }
+
+
+    function successDelect(data) {
+        if (data.Msg != "") {
+            $('#ui-dialog').html(data.Msg);
+            $('#ui-dialog').dialog({
+                show: "explode",
+                hide: "explode",
+                resizable: false,
+                title: "提示"
+            });
+        }
+        //        $("#QueryResult").html(data);
+    }
+
+
+</script>
+<div id="PartailAdmDeleteStu">
+    <div id="SearchCondition">
+        @using (Ajax.BeginForm("AdmDeleteStuTable", "Student", null,
+
+    new AjaxOptions
+     {
+         //OnSuccess = "successDelect(data)",
+         UpdateTargetId = "QueryResult",
+         HttpMethod = "POST",
+     }, new { id = "AdmDeleteStuForm" }))
+        { 
+            <table cellpadding="5px" cellspacing="5px" border="0px">
+                <tr>
+                    <td>
+                        @Html.LabelFor(Model => Model.UserNum)
+                    </td>
+                    <td>
+                        <div class="input">
+                            @Html.TextBoxFor(Model => Model.UserNum)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="button">
+                            <a href="#" onclick="queryStuId()"><span>查询</span></a></div>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <div id="QueryResult">
+    </div>
+</div>

@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ChangingMajorsManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ChangingMajorsManagementSystemModelStoreContainer">
+          <EntitySet Name="System_Majors" EntityType="ChangingMajorsManagementSystemModel.Store.System_Majors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="System_User" EntityType="ChangingMajorsManagementSystemModel.Store.System_User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="system_user_detail" EntityType="ChangingMajorsManagementSystemModel.Store.system_user_detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="system_user_manager" EntityType="ChangingMajorsManagementSystemModel.Store.system_user_manager" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_ChangingMajors_Start" EntityType="ChangingMajorsManagementSystemModel.Store.User_ChangingMajors_Start" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_Entry" EntityType="ChangingMajorsManagementSystemModel.Store.User_Entry" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_Notice" EntityType="ChangingMajorsManagementSystemModel.Store.User_Notice" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_SYSTEM_U_REFERENCE_SYSTEM_U" Association="ChangingMajorsManagementSystemModel.Store.FK_SYSTEM_U_REFERENCE_SYSTEM_U">
+            <End Role="system_user_manager" EntitySet="system_user_manager" />
+            <End Role="System_User" EntitySet="System_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ENT_REFERENCE_USER_CHA" Association="ChangingMajorsManagementSystemModel.Store.FK_USER_ENT_REFERENCE_USER_CHA">
+            <End Role="User_ChangingMajors_Start" EntitySet="User_ChangingMajors_Start" />
+            <End Role="User_Entry" EntitySet="User_Entry" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="System_Majors">
+          <Key>
+            <PropertyRef Name="major_id" />
+          </Key>
+          <Property Name="major_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_art_science" Type="int" />
+          <Property Name="major_flag" Type="int" />
+          <Property Name="major_date" Type="varchar" MaxLength="20" />
+          <Property Name="major_num" Type="int" />
+          <Property Name="major_start_flag" Type="int" />
+        </EntityType>
+        <EntityType Name="System_User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="upload_id" Type="int" />
+          <Property Name="user_num" Type="varchar" MaxLength="50" />
+          <Property Name="user_password" Type="varchar" MaxLength="50" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="user_sex" Type="int" />
+          <Property Name="user_class" Type="varchar" MaxLength="100" />
+          <Property Name="user_arts_science" Type="int" />
+          <Property Name="user_address" Type="varchar" MaxLength="50" />
+          <Property Name="user_demotion" Type="int" />
+          <Property Name="user_flied_class" Type="int" />
+          <Property Name="user_disciplinary_award" Type="int" />
+          <Property Name="user_long_phone" Type="varchar" MaxLength="20" />
+          <Property Name="user_short_phone" Type="varchar" MaxLength="20" />
+          <Property Name="user_honour" Type="varchar" />
+          <Property Name="user_power" Type="int" />
+          <Property Name="user_flag" Type="int" />
+          <Property Name="user_date" Type="varchar" MaxLength="50" />
+          <Property Name="user_apply_flag" Type="int" />
+          <Property Name="user_email" Type="varchar" MaxLength="500" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="sys_major_name" Type="varchar" MaxLength="100" />
+          <Property Name="user_major_id" Type="varchar" MaxLength="50" />
+          <Property Name="user_sys_major_id" Type="varchar" MaxLength="50" />
+          <Property Name="user_english_level_four" Type="varchar" MaxLength="50" />
+          <Property Name="user_english_level_six" Type="varchar" MaxLength="50" />
+          <Property Name="user_last_major_num" Type="varchar" MaxLength="50" />
+          <Property Name="user_credit_weighted_average" Type="varchar" MaxLength="50" />
+          <Property Name="user_major_ranking" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="system_user_detail">
+          <Key>
+            <PropertyRef Name="detail_id" />
+          </Key>
+          <Property Name="detail_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_num" Type="varchar" MaxLength="50" />
+          <Property Name="user_major_ranking" Type="varchar" MaxLength="50" />
+          <Property Name="user_major_num" Type="varchar" MaxLength="50" />
+          <Property Name="user_credit_weighted_average" Type="varchar" MaxLength="50" />
+          <Property Name="detail_date" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="system_user_manager">
+          <Key>
+            <PropertyRef Name="upload_id" />
+          </Key>
+          <Property Name="upload_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="upload_date" Type="varchar" MaxLength="50" />
+          <Property Name="upload_state" Type="varchar" MaxLength="50" />
+          <Property Name="upload_num" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_ChangingMajors_Start">
+          <Key>
+            <PropertyRef Name="start_id" />
+          </Key>
+          <Property Name="start_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="start_date" Type="varchar" MaxLength="20" />
+          <Property Name="start_flag" Type="int" />
+          <Property Name="user_num" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="User_Entry">
+          <Key>
+            <PropertyRef Name="entry_id" />
+          </Key>
+          <Property Name="entry_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="start_id" Type="int" />
+          <Property Name="user_num" Type="varchar" MaxLength="20" />
+          <Property Name="major_name" Type="varchar" MaxLength="50" />
+          <Property Name="sys_major_name" Type="varchar" MaxLength="50" />
+          <Property Name="entry_state" Type="int" />
+          <Property Name="entry_flag" Type="int" />
+          <Property Name="major_id" Type="varchar" MaxLength="50" />
+          <Property Name="sys_major_id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_Notice">
+          <Key>
+            <PropertyRef Name="notice_id" />
+          </Key>
+          <Property Name="notice_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="notice_title" Type="varchar" MaxLength="200" />
+          <Property Name="notice_detail" Type="varchar" />
+          <Property Name="notice_date" Type="varchar" MaxLength="50" />
+          <Property Name="notice_flag" Type="int" />
+          <Property Name="notice_file" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_SYSTEM_U_REFERENCE_SYSTEM_U">
+          <End Role="system_user_manager" Type="ChangingMajorsManagementSystemModel.Store.system_user_manager" Multiplicity="0..1" />
+          <End Role="System_User" Type="ChangingMajorsManagementSystemModel.Store.System_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="system_user_manager">
+              <PropertyRef Name="upload_id" />
+            </Principal>
+            <Dependent Role="System_User">
+              <PropertyRef Name="upload_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ENT_REFERENCE_USER_CHA">
+          <End Role="User_ChangingMajors_Start" Type="ChangingMajorsManagementSystemModel.Store.User_ChangingMajors_Start" Multiplicity="0..1" />
+          <End Role="User_Entry" Type="ChangingMajorsManagementSystemModel.Store.User_Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_ChangingMajors_Start">
+              <PropertyRef Name="start_id" />
+            </Principal>
+            <Dependent Role="User_Entry">
+              <PropertyRef Name="start_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChangingMajorsManagementSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ChangingMajorsManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="System_Majors" EntityType="ChangingMajorsManagementSystemModel.System_Majors" />
+          <EntitySet Name="System_User" EntityType="ChangingMajorsManagementSystemModel.System_User" />
+          <EntitySet Name="system_user_detail" EntityType="ChangingMajorsManagementSystemModel.system_user_detail" />
+          <EntitySet Name="system_user_manager" EntityType="ChangingMajorsManagementSystemModel.system_user_manager" />
+          <EntitySet Name="User_ChangingMajors_Start" EntityType="ChangingMajorsManagementSystemModel.User_ChangingMajors_Start" />
+          <EntitySet Name="User_Entry" EntityType="ChangingMajorsManagementSystemModel.User_Entry" />
+          <EntitySet Name="User_Notice" EntityType="ChangingMajorsManagementSystemModel.User_Notice" />
+          <AssociationSet Name="FK_SYSTEM_U_REFERENCE_SYSTEM_U" Association="ChangingMajorsManagementSystemModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U">
+            <End Role="system_user_manager" EntitySet="system_user_manager" />
+            <End Role="System_User" EntitySet="System_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ENT_REFERENCE_USER_CHA" Association="ChangingMajorsManagementSystemModel.FK_USER_ENT_REFERENCE_USER_CHA">
+            <End Role="User_ChangingMajors_Start" EntitySet="User_ChangingMajors_Start" />
+            <End Role="User_Entry" EntitySet="User_Entry" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="System_Majors">
+          <Key>
+            <PropertyRef Name="major_id" />
+          </Key>
+          <Property Name="major_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="major_art_science" Type="Int32" />
+          <Property Name="major_flag" Type="Int32" />
+          <Property Name="major_date" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="major_num" Type="Int32" />
+          <Property Name="major_start_flag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="System_User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="upload_id" Type="Int32" />
+          <Property Name="user_num" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_sex" Type="Int32" />
+          <Property Name="user_class" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="user_arts_science" Type="Int32" />
+          <Property Name="user_address" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_demotion" Type="Int32" />
+          <Property Name="user_flied_class" Type="Int32" />
+          <Property Name="user_disciplinary_award" Type="Int32" />
+          <Property Name="user_long_phone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="user_short_phone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="user_honour" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="user_power" Type="Int32" />
+          <Property Name="user_flag" Type="Int32" />
+          <Property Name="user_date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_apply_flag" Type="Int32" />
+          <Property Name="user_email" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="major_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="sys_major_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="user_major_id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_sys_major_id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_english_level_four" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_english_level_six" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_last_major_num" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_credit_weighted_average" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_major_ranking" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="system_user_manager" Relationship="ChangingMajorsManagementSystemModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U" FromRole="System_User" ToRole="system_user_manager" />
+        </EntityType>
+        <EntityType Name="system_user_detail">
+          <Key>
+            <PropertyRef Name="detail_id" />
+          </Key>
+          <Property Name="detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_num" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_major_ranking" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_major_num" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user_credit_weighted_average" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="detail_date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="system_user_manager">
+          <Key>
+            <PropertyRef Name="upload_id" />
+          </Key>
+          <Property Name="upload_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="upload_date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="upload_state" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="upload_num" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="System_User" Relationship="ChangingMajorsManagementSystemModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U" FromRole="system_user_manager" ToRole="System_User" />
+        </EntityType>
+        <EntityType Name="User_ChangingMajors_Start">
+          <Key>
+            <PropertyRef Name="start_id" />
+          </Key>
+          <Property Name="start_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_date" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="start_flag" Type="Int32" />
+          <Property Name="user_num" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User_Entry" Relationship="ChangingMajorsManagementSystemModel.FK_USER_ENT_REFERENCE_USER_CHA" FromRole="User_ChangingMajors_Start" ToRole="User_Entry" />
+        </EntityType>
+        <EntityType Name="User_Entry">
+          <Key>
+            <PropertyRef Name="entry_id" />
+          </Key>
+          <Property Name="entry_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_id" Type="Int32" />
+          <Property Name="user_num" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="major_name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="sys_major_name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="entry_state" Type="Int32" />
+          <Property Name="entry_flag" Type="Int32" />
+          <Property Name="major_id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="sys_major_id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User_ChangingMajors_Start" Relationship="ChangingMajorsManagementSystemModel.FK_USER_ENT_REFERENCE_USER_CHA" FromRole="User_Entry" ToRole="User_ChangingMajors_Start" />
+        </EntityType>
+        <EntityType Name="User_Notice">
+          <Key>
+            <PropertyRef Name="notice_id" />
+          </Key>
+          <Property Name="notice_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="notice_title" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="notice_detail" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="notice_date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="notice_flag" Type="Int32" />
+          <Property Name="notice_file" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_SYSTEM_U_REFERENCE_SYSTEM_U">
+          <End Role="system_user_manager" Type="ChangingMajorsManagementSystemModel.system_user_manager" Multiplicity="0..1" />
+          <End Role="System_User" Type="ChangingMajorsManagementSystemModel.System_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="system_user_manager">
+              <PropertyRef Name="upload_id" />
+            </Principal>
+            <Dependent Role="System_User">
+              <PropertyRef Name="upload_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ENT_REFERENCE_USER_CHA">
+          <End Role="User_ChangingMajors_Start" Type="ChangingMajorsManagementSystemModel.User_ChangingMajors_Start" Multiplicity="0..1" />
+          <End Role="User_Entry" Type="ChangingMajorsManagementSystemModel.User_Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_ChangingMajors_Start">
+              <PropertyRef Name="start_id" />
+            </Principal>
+            <Dependent Role="User_Entry">
+              <PropertyRef Name="start_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChangingMajorsManagementSystemModelStoreContainer" CdmEntityContainer="ChangingMajorsManagementSystemEntities">
+          <EntitySetMapping Name="System_Majors">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.System_Majors">
+              <MappingFragment StoreEntitySet="System_Majors">
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="major_art_science" ColumnName="major_art_science" />
+                <ScalarProperty Name="major_flag" ColumnName="major_flag" />
+                <ScalarProperty Name="major_date" ColumnName="major_date" />
+                <ScalarProperty Name="major_num" ColumnName="major_num" />
+                <ScalarProperty Name="major_start_flag" ColumnName="major_start_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="System_User">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.System_User">
+              <MappingFragment StoreEntitySet="System_User">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="upload_id" ColumnName="upload_id" />
+                <ScalarProperty Name="user_num" ColumnName="user_num" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+                <ScalarProperty Name="user_class" ColumnName="user_class" />
+                <ScalarProperty Name="user_arts_science" ColumnName="user_arts_science" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_demotion" ColumnName="user_demotion" />
+                <ScalarProperty Name="user_flied_class" ColumnName="user_flied_class" />
+                <ScalarProperty Name="user_disciplinary_award" ColumnName="user_disciplinary_award" />
+                <ScalarProperty Name="user_long_phone" ColumnName="user_long_phone" />
+                <ScalarProperty Name="user_short_phone" ColumnName="user_short_phone" />
+                <ScalarProperty Name="user_honour" ColumnName="user_honour" />
+                <ScalarProperty Name="user_power" ColumnName="user_power" />
+                <ScalarProperty Name="user_flag" ColumnName="user_flag" />
+                <ScalarProperty Name="user_date" ColumnName="user_date" />
+                <ScalarProperty Name="user_apply_flag" ColumnName="user_apply_flag" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="sys_major_name" ColumnName="sys_major_name" />
+                <ScalarProperty Name="user_major_id" ColumnName="user_major_id" />
+                <ScalarProperty Name="user_sys_major_id" ColumnName="user_sys_major_id" />
+                <ScalarProperty Name="user_english_level_four" ColumnName="user_english_level_four" />
+                <ScalarProperty Name="user_english_level_six" ColumnName="user_english_level_six" />
+                <ScalarProperty Name="user_last_major_num" ColumnName="user_last_major_num" />
+                <ScalarProperty Name="user_credit_weighted_average" ColumnName="user_credit_weighted_average" />
+                <ScalarProperty Name="user_major_ranking" ColumnName="user_major_ranking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system_user_detail">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.system_user_detail">
+              <MappingFragment StoreEntitySet="system_user_detail">
+                <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+                <ScalarProperty Name="user_num" ColumnName="user_num" />
+                <ScalarProperty Name="user_major_ranking" ColumnName="user_major_ranking" />
+                <ScalarProperty Name="user_major_num" ColumnName="user_major_num" />
+                <ScalarProperty Name="user_credit_weighted_average" ColumnName="user_credit_weighted_average" />
+                <ScalarProperty Name="detail_date" ColumnName="detail_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system_user_manager">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.system_user_manager">
+              <MappingFragment StoreEntitySet="system_user_manager">
+                <ScalarProperty Name="upload_id" ColumnName="upload_id" />
+                <ScalarProperty Name="upload_date" ColumnName="upload_date" />
+                <ScalarProperty Name="upload_state" ColumnName="upload_state" />
+                <ScalarProperty Name="upload_num" ColumnName="upload_num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_ChangingMajors_Start">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.User_ChangingMajors_Start">
+              <MappingFragment StoreEntitySet="User_ChangingMajors_Start">
+                <ScalarProperty Name="start_id" ColumnName="start_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="start_flag" ColumnName="start_flag" />
+                <ScalarProperty Name="user_num" ColumnName="user_num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Entry">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.User_Entry">
+              <MappingFragment StoreEntitySet="User_Entry">
+                <ScalarProperty Name="entry_id" ColumnName="entry_id" />
+                <ScalarProperty Name="start_id" ColumnName="start_id" />
+                <ScalarProperty Name="user_num" ColumnName="user_num" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="sys_major_name" ColumnName="sys_major_name" />
+                <ScalarProperty Name="entry_state" ColumnName="entry_state" />
+                <ScalarProperty Name="entry_flag" ColumnName="entry_flag" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="sys_major_id" ColumnName="sys_major_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Notice">
+            <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.User_Notice">
+              <MappingFragment StoreEntitySet="User_Notice">
+                <ScalarProperty Name="notice_id" ColumnName="notice_id" />
+                <ScalarProperty Name="notice_title" ColumnName="notice_title" />
+                <ScalarProperty Name="notice_detail" ColumnName="notice_detail" />
+                <ScalarProperty Name="notice_date" ColumnName="notice_date" />
+                <ScalarProperty Name="notice_flag" ColumnName="notice_flag" />
+                <ScalarProperty Name="notice_file" ColumnName="notice_file" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ChangingMajorsManagementSystem">
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.System_Majors" Width="1.5" PointX="5.75" PointY="0.75" Height="2.3520719401041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.System_User" Width="1.5" PointX="3" PointY="5.125" Height="6.74552490234375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.system_user_detail" Width="1.5" PointX="5.75" PointY="4.75" Height="2.1610522460937496" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.system_user_manager" Width="1.5" PointX="0.75" PointY="7.5" Height="1.9700325520833326" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.User_ChangingMajors_Start" Width="1.5" PointX="0.75" PointY="1.5" Height="1.9700325520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.User_Entry" Width="1.5" PointX="3" PointY="1" Height="2.9251310221354165" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChangingMajorsManagementSystemModel.User_Notice" Width="1.5" PointX="7.75" PointY="0.75" Height="2.1610522460937496" IsExpanded="true" />
+        <AssociationConnector Association="ChangingMajorsManagementSystemModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.4850162760416659" />
+          <ConnectorPoint PointX="3" PointY="8.4850162760416659" />
+        </AssociationConnector>
+        <AssociationConnector Association="ChangingMajorsManagementSystemModel.FK_USER_ENT_REFERENCE_USER_CHA" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.4850162760416667" />
+          <ConnectorPoint PointX="3" PointY="2.4850162760416667" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

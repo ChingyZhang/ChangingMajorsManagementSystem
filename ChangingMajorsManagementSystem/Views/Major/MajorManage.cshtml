@@ -1,0 +1,66 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //初始化下拉框
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('main');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                $('#select_info_' + selects[i].name).attr("class", "tag_select");
+                $('#boxul_' + selects[i].name).css("display", "none");
+                //                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                //                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+            }
+        };
+
+    });
+
+    function majorManageAffirm() {
+        var value = $("#MajorManageList").val();
+        var myurl = "";
+//        //添加
+//        if (value == "0") {
+//            myurl = "/Major/AddMajors?year=" + $("#year").val();
+//        }
+//        //删除
+//        else if (value == "1") {
+//            myurl = "/Major/MajorsTable?year=" + $("#year").val();
+//        }
+//        //修改
+//        else {
+
+//        }
+        myurl = "/Major/AlterMajors?year=" + $("#year").val();
+        $.ajax({
+            type: "GET",
+            url: myurl,
+            data: {},
+            success: function (data) {
+                $("#MajorManageUI").html(data);
+            }
+        });
+    }
+</script>
+<div id="PartailMajorManage">
+    <table cellpadding="5px" cellspacing="5px" border="0px">
+        <tr>
+            <td>
+                <div class="uboxstyle">
+                    @Html.DropDownList("MajorManageList", ViewData["MajorselectList"] as SelectList)
+                </div>
+            </td>
+            <td>
+                <div class="uboxstyle">
+                    @Html.DropDownList("year", ViewData["year"] as SelectList)
+                </div>
+            </td>
+            <td>
+                <div class="button">
+                    <a href="#"><span onclick="majorManageAffirm();">确定</span></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div id="MajorManageUI">
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿
+@{var noticeDetail = ViewData["NoticeDetail"] as ChangingMajors.DAL.Model.NoticeModel;}
+<script type="text/javascript">
+    function clickDownloadFile() {
+        var url = $("#download").attr("MyUrl");
+        var name = $("#download").attr("MyFileName");
+
+        location.href = "/Notice/NoticeDownload?FileName=" + name + "&FilePath=" + url;
+    }
+</script>
+<div class="inform">
+    <div class="inform_box">
+        <div style="height: 94px;">
+            <div class="inform_corner_tl">
+            </div>
+            <div class="inform_corner_tr">
+            </div>
+        </div>
+        <div class="inform_middle">
+            <div class="inform_middle_title">@Html.Encode(noticeDetail.NoticeTitle)</div>
+            <p>
+                <span>@noticeDetail.NoticeDetail</span>
+            </p>
+            <p>
+                <span>
+                    @Html.Encode(noticeDetail.NoticeDate)
+                </span>
+            </p>
+            <p>
+                <span>
+                    @if (noticeDetail.NoticeFileLastName != null)
+                    {
+                        <a href="#" onclick="clickDownloadFile()">@noticeDetail.NoticeFileLastName</a>
+                        <input id="download" type="hidden" MyUrl="@noticeDetail.NoticeFileUrl" MyFileName="@noticeDetail.NoticeFileLastName" />
+                    }
+                </span>
+            </p>
+        </div>
+        <div style="height: 94px;">
+            <div class="inform_corner_bl">
+            </div>
+            <div class="inform_corner_br">
+            </div>
+        </div>
+    </div>
+</div>

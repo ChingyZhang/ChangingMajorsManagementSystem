@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @{var pour = ViewData["Pour"].ToString();}
+    @if (pour == "0")
+    {
+        @Html.Partial("MenuAdm")
+    }
+    else
+    {
+        @Html.Partial("MenuStu")
+    }
+@*<div id="leftMenu">
+    <ul>
+        <li>个人资料</li>
+        <li>相册管理</li>
+        <li>日志管理</li>
+        <li>留言管理</li>
+        <li>风格管理</li>
+        <li>系统管理</li>
+        <li>帮助信息</li>
+        <li>转专业申请</li>
+    </ul>
+</div>*@

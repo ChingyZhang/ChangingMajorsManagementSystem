@@ -1,0 +1,55 @@
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll.config
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.pdb
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.dll
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.pdb
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.dll
+C:\Users\N_Sword\documents\visual studio 2010\Projects\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.pdb
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ResolveAssemblyReference.cache
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.dll
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.pdb
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll.config
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.pdb
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.dll
+E:\程序猿\网站\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.pdb
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll.config
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.pdb
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.pdb
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.dll
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.pdb
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.csprojResolveAssemblyReference.cache
+D:\cmms\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.dll
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll.config
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.pdb
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.dll
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.pdb
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ResolveAssemblyReference.cache
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.dll
+E:\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.pdb
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll.config
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.pdb
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.dll
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.pdb
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ResolveAssemblyReference.cache
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.dll
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.pdb
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueHelper.dll
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\Interop.ADOX.dll
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\Interop.ADODB.dll
+E:\程序猿\网站\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueHelper.pdb
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll.config
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.dll
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ChangingMajors.DAL.pdb
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.dll
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\Interop.ADOX.dll
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\Interop.ADODB.dll
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueOffice.pdb
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\bin\Debug\ValueHelper.pdb
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ResolveAssemblyReference.cache
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.dll
+E:\CodeMonkey\MVC\仁济转专业系统\仁济转专业系统\ChangingMajorsManagementSystem\ChangingMajors.DAL\obj\Debug\ChangingMajors.DAL.pdb

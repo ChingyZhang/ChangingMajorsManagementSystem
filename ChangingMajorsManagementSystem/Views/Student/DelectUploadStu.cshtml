@@ -1,0 +1,123 @@
+﻿@{var uploadTable = ViewData["uploadTable"] as List<ChangingMajors.DAL.Entity.system_user_manager>;}
+<script type="text/javascript">
+    function delectUpload(aa) {
+        $(aa).css("display", "none");
+        var uploadId = $(aa).attr("myid");
+        $.ajax({
+            type: "POST",
+            url: "/Student/DelectUploadStu",
+            data: { "delectUploadID": uploadId
+            },
+            success: function (data) {
+                $("#delectUpload").html(data);
+            }
+        });
+    }
+
+
+</script>
+<div id="updateUpload">
+    <div class="panelBar">
+        学生数据批量删除</div>
+    <div class="searchbox" style="background: #F2F6FB; border-bottom: 1px solid #B8D0D6;">
+        <div style="color: Red">
+            数据删除功能将会删除所选项全部数据(不可逆),请谨慎使用</div>
+        <div class="grid_header">
+            <div class="grid_header_offset">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                编号</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                上传时间</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                使用状态</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                上传人数</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                删除</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="grid_list" style="max-height: 271px; overflow: auto;">
+            <div class="grid_list_row">
+                <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    @if (uploadTable != null)
+                    {
+                        for (int i = 0; i < uploadTable.Count; i++)
+                        {
+                        <tr>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(uploadTable[i].upload_id)</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(uploadTable[i].upload_date)</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (uploadTable[i].upload_state == "0")
+                                    {
+                                        @Html.Encode("未启用")
+                                    }
+                                    else
+                                    {
+                                        if (uploadTable[i].upload_state == "2")
+                                        {
+                                        <div style="color: Gray">
+                                            已结束</div>
+                                        }
+                                        else
+                                        {
+                                        <div style="color: Red">
+                                            已启用</div>
+                                            
+                                        }
+                                    }
+                                </div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(uploadTable[i].upload_num)</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (uploadTable[i].upload_state == "0" || uploadTable[i].upload_state == "2")
+                                    {
+                                        <input type="button" myid="@uploadTable[i].upload_id" value="删除" onclick="delectUpload(this)" />
+                                    }
+                                    else
+                                    {
+                                        <div style="color: Red">
+                                            数据已启用无法删除</div>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>
+                                当前无数据...
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model ChangingMajorsManagementSystem.Models.UserInfoModel
+<script type="text/javascript">
+    $(function () {
+        $("#StuDetailTableFrom").submit();
+    });
+
+    function submitValue() {
+        $("#StuDetailTableFrom").submit();
+    }
+</script>
+<div class="information">
+    <div class="searchbox">
+        <div id="_stuDetailTable">
+            @using (Ajax.BeginForm("StuDetailTable", "Student", null, new AjaxOptions
+    {
+        UpdateTargetId = "stuDetailTable",
+        HttpMethod = "POST"
+    }, new { id = "StuDetailTableFrom" }))
+            { 
+                <table cellpadding="5px" cellspacing="5px" border="0px">
+                    <tr>
+                        <td>
+                            学&nbsp;&nbsp;&nbsp;&nbsp;号:
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(Model => Model.UserNum)
+                            </div>
+                        </td>
+                        <td rowspan="2" width="50px">
+                        </td>
+                        <td>
+                            姓&nbsp;&nbsp;&nbsp;&nbsp;名:
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(Model => Model.UserName)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="button">
+                                <a href="#" onclick="submitValue()"><span>查询</span></a></div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+<div id="stuDetailTable">
+</div>

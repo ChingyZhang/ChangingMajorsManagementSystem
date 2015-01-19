@@ -1,0 +1,103 @@
+﻿@model ChangingMajorsManagementSystem.Models.CollectModel
+@{var major = ViewData["Major"] as SelectList;}
+<script type="text/javascript">
+    $(function () {
+        //archbox 中的 select 事件
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('main');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+            }
+        }
+        //archbox 中的 select 事件
+    });
+    function setValue() {
+        $("#CollectForm").submit();
+    }
+
+    function QueryTable() {
+        var major = $("#majorName").attr("value");
+        var sysMajor = $("#sysMajorName").attr("value");
+        $.ajax({
+            type: 'POST',
+            url: '/Collect/CollectTable',
+            data: { 'MajorName': major, 'SysMajorName': sysMajor },
+            success: function (data) {
+                $("#collectTable").html(data);
+            }
+        });
+    }
+
+    
+</script>
+<div class="information">
+    <div class="searchbox">
+        <div id="collect">
+            @using (Ajax.BeginForm("CollectTable", "Collect", null,
+        new AjaxOptions
+        {
+            UpdateTargetId = "collectTable",
+            HttpMethod = "POST",
+        },
+        new { id = "CollectForm" }))
+            {
+                <table id="doubleMajor" cellpadding="5px" cellspacing="5px" border="0px">
+                    <tr>
+                        <td>
+                            原专业:
+                        </td>
+                        <td>
+                            <div class="uboxstyle">
+                                @if (major != null)
+                                {
+                                    <div class="uboxstyle">
+                                        @Html.DropDownList("MajorName", major)
+                                    </div>
+                                }
+                                else
+                                { 
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            alert("未发起状态无法统计,请先发起报名");
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '/Notice/Notice',
+                                                success: function (data) {
+                                                    $("#con4").html(data);
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                }
+                            </div>
+                        </td>
+                        <td rowspan="2" width="50px">
+                        </td>
+                        <td>
+                            拟转专业名称:
+                        </td>
+                        <td>
+                            <div class="uboxstyle">
+                                @if (major != null)
+                                {
+                                    <div class="uboxstyle">
+                                        @Html.DropDownList("sysMajorName", major)
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <div class="button">
+                                <a href="#" onclick="setValue();"><span>查询</span></a></div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+<div id="collectTable">
+</div>

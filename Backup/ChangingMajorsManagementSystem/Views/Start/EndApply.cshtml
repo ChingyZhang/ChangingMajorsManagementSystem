@@ -1,0 +1,78 @@
+﻿@model ChangingMajors.DAL.Entity.User_ChangingMajors_Start
+<script type="text/javascript">
+    function aaclick(button) {
+        var id = $(button).attr("id");
+        $.ajax({
+            type: 'POST',
+            url: '/Start/EndApply',
+            data: { 'EndID': id },
+            success: function () {
+                alert('a');
+                $('#ui-dialog').html("删除成功");
+                $('#ui-dialog').dialog({
+                    show: "explode",
+                    hide: "explode",
+                    resizable: false,
+                    title: "提示"
+                });
+
+                F5();
+            }
+        });
+    }
+
+
+</script>
+<div>
+    <table>
+        <tr>
+            <td>
+                编号
+            </td>
+            <td>
+                发起人
+            </td>
+            <td>
+                发起时间
+            </td>
+            <td>
+                发起状态
+            </td>
+            <td>
+                结束
+            </td>
+        </tr>
+        @{var table = ViewData["table"] as List<ChangingMajors.DAL.Entity.User_ChangingMajors_Start>;}
+        @if (table != null)
+        {
+            for (int i = 0; i < table.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Html.Encode(table[i].start_id)
+                </td>
+                <td>
+                    @Html.Encode(table[i].user_num)
+                </td>
+                <td>
+                    @Html.Encode(table[i].start_date)
+                </td>
+                <td>
+                    @Html.Encode(table[i].start_flag)
+                </td>
+                <td>
+                    <input id="@Html.Encode(table[i].start_id)" type="button" value="结束" onclick="aaclick(this)" />
+                </td>
+            </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    当前无数据
+                </td>
+            </tr>
+        }
+    </table>
+</div>

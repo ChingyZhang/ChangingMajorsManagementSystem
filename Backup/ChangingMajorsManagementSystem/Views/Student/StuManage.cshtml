@@ -1,0 +1,63 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //初始化下拉框
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('PartailStuManage');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                $('#select_info_' + selects[i].name).attr("class", "tag_select");
+                $('#boxul_' + selects[i].name).css("display", "none");
+                //                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                //                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+            }
+        }
+    });
+
+    function manageAffirm() {
+        var value = $("#ManageList").val();
+        var myurl = "";
+        //添加
+        if (value == "0") {
+            myurl = "/Student/AdmAddStu";
+        }
+        //删除
+        else if (value == "1") {
+            myurl = "/Student/AdmDeleteStu";
+        }
+        //修改
+        else if (value == "2") {
+            myurl = "/Student/StuDetail";
+        }
+        else {
+            myurl = "/Apply/SearchStu";
+        }
+        $.ajax({
+            type: "GET",
+            url: myurl,
+            data: {},
+            success: function (data) {
+                $("#ManageUI").html(data);
+            }
+        });
+    }
+</script>
+<div id="PartailStuManage">
+    <table>
+        <tr>
+            <td>
+                <div class="uboxstyle">
+                    @Html.DropDownList("ManageList", ViewData["selectList"] as SelectList)
+                </div>
+            </td>
+            <td>
+                <div class="button">
+                    <a href="#"><span onclick="manageAffirm();">确定</span></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div id="ManageUI">
+    </div>
+    
+</div>

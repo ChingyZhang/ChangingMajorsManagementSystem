@@ -1,0 +1,84 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //初始化下拉框
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('PartailMajorManage');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                $('#select_info_' + selects[i].name).attr("class", "tag_select");
+                $('#boxul_' + selects[i].name).css("display", "none");
+                //                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                //                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+            }
+        }
+
+        if ('@ViewData["Msg"]' != "") {
+            $('#ui-dialog').html('@ViewData["Msg"]');
+            $('#ui-dialog').dialog({
+                show: "explode",
+                hide: "explode",
+                resizable: false,
+                title: "提示"
+            });
+        }
+
+        onlyNum($("#MajorNumOfPeople"));
+    });
+
+    function confirmAddMajors() {
+        $("#AddMajorsForm", $("#PartailAddMajors")).submit();
+    }
+</script>
+<div id="PartailAddMajors">
+    @using (Ajax.BeginForm("AddMajors", "Major", null, new AjaxOptions { UpdateTargetId = "MajorManageUI" }, new { id = "AddMajorsForm" }))
+    {
+        <table cellpadding="5px" cellspacing="5px" border="0px">
+            <tr>
+                <td>
+                    @Html.Label("专业名称")
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBox("MajorName")
+                    </div>
+                </td>
+                <td rowspan="6" width="50px">
+                </td>
+                <td>
+                    @Html.Label("文理科")
+                </td>
+                <td>
+                    <div class="uboxstyle">
+                        @Html.DropDownList("MajorArtOrScience", ViewData["UserArtsScience"] as SelectList)
+                    </div>
+                </td>
+                <td rowspan="6" width="50px">
+                </td>
+                <td>
+                    @Html.Label("人数")
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBox("MajorNumOfPeople")
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("年份")
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBox("Year", ViewData["year"], new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    <div class="button">
+                        <a href="#"><span onclick="confirmAddMajors();">添加</span></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+</div>

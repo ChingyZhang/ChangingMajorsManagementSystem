@@ -1,0 +1,117 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $("#PartailNotice").find("a").click(function () {
+            //            alert($(this).attr("id"));
+
+            $.ajax({
+                type: "POST",
+                url: "/Notice/NoticeDetail",
+                data: { "noticeID": $(this).attr("myid")
+                },
+                success: function (data) {
+                    $("#con0").html(data);
+                }
+            });
+
+        });
+    });
+
+
+    function DelectNotice(aa) {
+        var delectID = $(aa).attr("id");
+        $.ajax({
+            type: "POST",
+            url: "/Notice/DelectNotice",
+            data: { "NoticeId": delectID
+            },
+            success: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Notice/Notice",
+                    data: {},
+                    success: function (data) {
+                        $("#con0").html(data);
+                    }
+                });
+            }
+        });
+    }
+
+    //    function GoNoticeDetail(id) {
+    //        //        var noticeID = document.getElementById("noticeDetail").title;
+    //        //        alert(noticeID);
+    //        //        var mrg_time = $("#wcdjmrg #mrg_time").val();
+    //        //        var sure = document.getElementById("sure").name;
+    //        //        alert(sure);
+    //        var noticeID = $(id).attr("myid");
+    //        alert(noticeID);
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "/Notice/NoticeDetail",
+    //            data: { "noticeID": noticeID
+    //            },
+    //            success: function (data) {
+    //                $("#con0").html(data);
+    //            }
+    //        });
+    //    }
+
+</script>
+<div id="PartailNotice">
+    @{var Notice = ViewData["Notice"] as List<ChangingMajors.DAL.Entity.User_Notice>;}
+    @{var noticeLength = 15;}
+    @if (Notice.Count < 15)
+    {
+        noticeLength = Notice.Count;
+    }
+    <div class="grid_header">
+        <div class="grid_header_offset">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td width="21px">
+                    </td>
+                    <td width="60%">
+                        <div class="grid_header_offset_inner">
+                            标题</div>
+                    </td>
+                    <td width="35%">
+                        <div class="grid_header_offset_inner">
+                            时间</div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="grid_list">
+        @for (int i = 0; i < noticeLength; i++)
+        {
+            var j = i + 1;
+      
+            <div class="grid_list_row">
+                <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td width="21px" class="grid_list_row_numberer">
+                            <div class="grid_list_row_inner1">
+                                @j</div>
+                        </td>
+                        <td width="60%">
+                            <div class="grid_list_row_inner2">
+                                <a href="#" id="@i" myid="@Html.Encode(Notice[i].notice_id)">@Html.Encode(Notice[i].notice_title.ToString())</a></div>
+                        </td>
+                        <td width="35%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(Notice[i].notice_date.ToString())</div>
+                        </td>
+                        @*@{var pppp = ViewData["Pour"].ToString();}*@
+                        <td>
+                            <input type="button" id="@Notice[i].notice_id" onclick="DelectNotice(this)" value="删除" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        }
+    </div>
+</div>

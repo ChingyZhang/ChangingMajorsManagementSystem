@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/common.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/uploadify1.4.6/uploadify.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/uploadify1.4.6/swfobject.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/uploadify1.4.6/jquery.uploadify.v2.1.4.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/clock.js")" type="text/javascript"></script>
+    <!--Fckeditor-->
+    <script src="@Url.Content("~/Scripts/fckeditor/ckeditor/ckeditor.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/fckeditor/ckfinder/ckfinder.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/fckeditor/ckeditor/adapters/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/select.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.basic.js")" type="text/javascript"></script>
+    <!--Jquery-UI-->
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.16/ui/jquery-ui.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/jquery-ui-1.8.16/themes/base/jquery.ui.all.css")" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            //function $(id) { return document.getElementById(id) }
+
+            var menu = $("#topTags").find("ul")[0]; //顶部菜单容器
+            var tags = $(menu).find("li"); //顶部菜单
+            var ck = $($("#leftMenu").find("ul")[0]).find("li"); //左侧菜单
+            var j;
+            //点击左侧菜单增加新标签
+            for (i = 0; i < ck.length; i++) {
+                $(ck[i]).click(function () {
+                    var url = $(this).attr("myUrl");
+                    var replaceTarget = $(this).attr("replacetarget");
+                    //$.ajaxSetup({ cache: false });//禁用缓存机制
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        data: { "time": new Date().toTimeString() }, //加上时间参数,
+                        success: function (data) {
+                            $("#" + replaceTarget).html(data);
+                        }
+                    });
+                    $("#welcome").css("display", "none");
+                    //                    $("welcome").style.display = "none"//欢迎内容隐藏
+                    clearMenu();
+
+                    $(this).css("background", "url(../../Content/images/tabbg02.gif)");
+
+                    //                    this.style.background = 'url(../../Content/images/tabbg02.gif)'
+                    //循环取得当前索引
+                    for (j = 0; j < 9; j++) {
+                        //                        alert("d");
+                        //alert($(this))
+                        if ($(this).attr("id") == $(ck[j]).attr("id")) {
+                            //                            alert("e");
+                            //                            alert($("#p" + j));
+                            if ($("#p" + j).attr("id") == undefined) {
+                                //                                alert("f");
+
+                                openNew(j, $(this).html()); //设置标签显示文字
+
+                            }
+                            clearStyle();
+
+                            $("#p" + j).css("background", "url(../../Content/images/tabbg1.gif)");
+                            //                            $("#p" + j).style.background = 'url(../../Content/images/tabbg1.gif)';
+                            clearContent();
+                            //                            alert("l");
+                            $("#c" + j).css("display", "block");
+                            //                            $("#c" + j).style.display = "block";
+                        }
+                    }
+                    return false;
+                });
+            }
+            //增加或删除标签
+            function openNew(id, name) {
+                //                var tagMenu = $("li");
+                var tagMenu = document.createElement("li");
+                tagMenu.id = "p" + id;
+                tagMenu.innerHTML = name + "&nbsp;&nbsp;" + "<img src='../../Content/images/off.gif' style='vertical-align:middle'/>";
+                //标签点击事件
+                //alert($(tagMenu).html());
+                $(tagMenu).click(function (evt) {
+                    //alert("i");
+                    //                tagMenu.onclick = function (evt) {
+                    clearMenu();
+                    $(ck[id]).css("background", "url(../../Content/images/tabbg02.gif)");
+                    //                    ck[id].style.background = 'url(../../Content/images/tabbg02.gif)'
+                    clearStyle();
+                    $(tagMenu).css("background", "url(../../Content/images/tabbg1.gif)");
+                    //                    tagMenu.style.background = 'url(../../Content/images/tabbg1.gif)';
+                    clearContent();
+                    $("#c" + id).css("display", "block");
+                    //                    $("c" + id).style.display = "block";
+                });
+
+
+                //标签内关闭图片点击事件tagMenu.getElementsByTagName("img")[0].onclick =
+
+                $($("img", tagMenu)[0]).click(function (evt) {
+                    //                    alert("j");
+                    evt = (evt) ? evt : ((window.event) ? window.event : null);
+                    if (evt.stopPropagation) { evt.stopPropagation() } //取消opera和Safari冒泡行为;
+                    this.parentNode.parentNode.removeChild(tagMenu); //删除当前标签
+                    var color = tagMenu.style.backgroundColor;
+                    //设置如果关闭一个标签时，让最后一个标签得到焦点
+                    if (color == "#ffff00" || color == "yellow") {//区别浏览器对颜色解释
+                        if (tags.length - 1 >= 0) {
+                            clearStyle();
+                            $(tags[tags.length - 1]).css("background", "url(../../Content/images/tabbg1.gif)");
+                            //                            tags[tags.length - 1].style.background = 'url(../../Content/images/tabbg1.gif)';
+                            clearContent();
+                            var cc = $(tags[tags.length - 1]).attr("id").split("p");
+                            //                            var cc = tags[tags.length - 1].id.split("p");
+                            $("#c" + cc[1]).css("display", "block");
+                            //                            $("c" + cc[1]).style.display = "block";
+                            clearMenu();
+                            $(ck[cc[1]]).css("background", "url(../../Content/images/tabbg1.gif)");
+                            //                            ck[cc[1]].style.background = 'url(../../Content/images/tabbg1.gif)';
+                        }
+                        else {
+                            clearContent();
+                            clearMenu();
+                            $("#welcome").css("display", "block");
+                            //                            $("welcome").style.display = "block"
+                        }
+                    }
+                });
+                //alert('j');
+                $(menu).append($(tagMenu));
+                //                menu.appendChild(tagMenu);
+            }
+            //清除菜单样式
+            function clearMenu() {
+                for (i = 0; i < ck.length; i++) {
+                    $(ck[i]).css("background", "url(../../Content/images/tabbg01.gif)");
+                    //                    $(ck[i].style.background = 'url(../../Content/images/tabbg01.gif)';
+                }
+            }
+            //清除标签样式
+            function clearStyle() {
+                for (i = 0; i < tags.length; i++) {
+
+                    $($("li", menu)[i]).css("background", "url(../../Content/images/tabbg2.gif)");
+                    //                    menu.getElementsByTagName("li")[i].style.background = 'url(../../Content/images/tabbg2.gif)';
+                }
+            }
+            //清除内容
+            function clearContent() {
+                for (i = 0; i < 8; i++) {
+                    $("#c" + i).css("display", "none");
+                    //                    $("c" + i).style.display = "none";
+                }
+            }
+
+        });
+
+        //监听textbox值的变化
+        var easychange = function (foochange) {
+            if (!foochange || foochange.constructor != Function) {
+                return;
+            }
+            try {
+                this.watch("value", function (id, oldval, newval) {
+
+                    foochange(newval);
+                    return newval;
+                });
+            }
+            catch (e) { }
+            this.setAttribute('oninput', '(' + foochange.toString() + ')(this.value)');
+            this.onpropertychange = function () {
+
+                foochange(this.value);
+            };
+            //    this.onkeyup = function () {
+
+            //        foochange(this.value);
+            //    };
+        };
+
+        function admchangePassword() {
+//            alert(1);
+            $.ajax({
+                type: "GET",
+                url: "/Student/AdmChangePassword",
+                data: { "time": new Date().toTimeString(), "UserID": $("#AAuserid").html() }, //加上时间参数,
+                success: function (data) {
+                    $("#welcome").html(data);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="head">
+        <div class="head_logo">
+        </div>
+        <div class="head_right">
+            @if (ViewData["pour"].ToString() == "0")
+            {
+                <a href="#" onclick="admchangePassword()">修改密码</a>
+            }
+            欢迎您，<span id="AAuserid">@Html.Encode(ViewData["UserID"])</span>！<span id="clock"
+                class="timer"></span>
+            <script type="text/javascript">
+                var clock = new Clock();
+                clock.display(document.getElementById("clock"));
+            </script>
+        </div>
+    </div>
+    <div id="top">
+        <h2>
+            管理菜单</h2>
+        <div class="jg">
+        </div>
+        <div id="topTags">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div id="leftMenu">
+            @RenderBody()
+        </div>
+        @*<div id="leftMenu">
+            <ul>
+                <li>个人资料</li>
+                <li>相册管理</li>
+                <li>日志管理</li>
+                <li>留言管理</li>
+                <li>风格管理</li>
+                <li>系统管理</li>
+                <li>帮助信息</li>
+                <li>转专业申请</li>
+            </ul>
+        </div>*@
+        <div class="jg">
+        </div>
+        <div id="content">
+            <div id="welcome" class="content" style="display: block;">
+                <div align="center">
+                    <p>
+                        &nbsp;</p>
+                    <p>
+                        <strong>欢迎使用温州医科大学仁济学院转专业系统！</strong></p>
+                    <p>
+                        &nbsp;</p>
+                </div>
+            </div>
+            <div id="c0" class="content">
+                <div id="con0">
+                </div>
+            </div>
+            <div id="c1" class="content">
+                <div id="con1">
+                </div>
+            </div>
+            <div id="c2" class="content">
+                <div id="con2">
+                </div>
+            </div>
+            <div id="c3" class="content">
+                <div id="con3">
+                </div>
+            </div>
+            <div id="c4" class="content">
+                <div id="con4">
+                </div>
+            </div>
+            <div id="c5" class="content">
+                <div id="con5">
+                </div>
+            </div>
+            <div id="c6" class="content">
+                <div id="con6">
+                </div>
+            </div>
+            <div id="c7" class="content">
+                <div id="con7">
+                </div>
+            </div>
+            <div id="c8" class="content">
+                <div id="con8">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <span style="font-size: 13px;">Copyright</span> &copy; 2012-2013 &nbsp;温州医科大学 &nbsp;Sedion工作室&nbsp;
+        版权所有</div>
+    <div id="ui-dialog" style="display: none">
+    </div>
+</body>
+</html>

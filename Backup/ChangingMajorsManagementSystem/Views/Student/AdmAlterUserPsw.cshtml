@@ -1,0 +1,86 @@
+﻿@model ChangingMajorsManagementSystem.Models.StuChangePasswordModel
+<script type="text/javascript">
+    $(function () {
+        if ('@ViewData["Msg"]' != "") {
+            $('#ui-dialog').html('@ViewData["Msg"]');
+            $('#ui-dialog').dialog({
+                show: "explode",
+                hide: "explode",
+                resizable: false,
+                title: "提示"
+            });
+        }
+    });
+
+    function submitvalue() {
+        var newpassword = $("#NewPassword").val();
+        var confrimpassword = $("#ConfirmPassword").val();
+        if (newpassword != confrimpassword) {
+            $('#ui-dialog').html('两次密码不一致,请检查');
+            $('#ui-dialog').dialog({
+                show: "explode",
+                hide: "explode",
+                resizable: false,
+                title: "提示"
+            });
+        }
+        else {
+            $("#changePasswordDIVForm1").submit();
+        }
+    }
+    
+
+
+</script>
+@using (Ajax.BeginForm("AdmAlterUserPsw", "Student", null,
+       new AjaxOptions
+{
+    UpdateTargetId = "ManageAlterUserPsw",
+    HttpMethod = "POST"
+}, new { id = "changePasswordDIVForm1" }))
+{
+    <div id="changePasswordDIV">
+        <div>
+            <div class="searchbox" style="background: #F2F6FB; border-bottom: 1px solid #B8D0D6;">
+                <table cellpadding="5px" cellspacing="5px" border="0px">
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.UserNum)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(Model => Model.UserNum)</div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(Model => Model.Password)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(Model => Model.Password)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.NewPassword)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.PasswordFor(Model => Model.NewPassword)</div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(Model => Model.ConfirmPassword)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.PasswordFor(Model => Model.ConfirmPassword)</div>
+                        </td>
+                        <td>
+                            <div class="button">
+                                <a href="#" onclick="submitvalue()"><span>修改密码</span></a></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+}

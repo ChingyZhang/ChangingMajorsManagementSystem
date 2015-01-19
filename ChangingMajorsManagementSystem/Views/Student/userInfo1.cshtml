@@ -1,0 +1,169 @@
+﻿@model ChangingMajorsManagementSystem.Models.UserInfoModel
+<div id="updateTable1">
+    <div class="searchbox" style="background: #F2F6FB; height: 447px;">
+        <table cellpadding="5px" cellspacing="5px" border="0px">
+            <tr>
+                <td>
+                    学号:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserNum, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td rowspan="6" width="50px">
+                </td>
+                <td>
+                    姓名:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserName, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td rowspan="6" width="50px">
+                </td>
+                <td>
+                    籍贯:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserAddress, new { @readonly = "readonly" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    文理科:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserArtsScience, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    长号:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.LongPhone, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    短号:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.ShortPhone, new { @readonly = "readonly" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    原专业:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.MajorName, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    拟转专业名称:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.SysMajorName, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    英语四级
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserEnglishLevelFour, new { @readonly = "readonly" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    英语六级
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserEnglishLevelSix, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    专业排名:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.MajorRanking, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    算数平均分:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserCreditWeightedAverage, new { @readonly = "readonly" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    是否有处分
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserDisciplinaryAward, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    是否有不及格课程:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.FiledClass, new { @readonly = "readonly" })
+                    </div>
+                </td>
+                <td>
+                    是否同意降级:
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserDemotion, new { @readonly = "readonly" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="padding-top: 10px;">
+                    个人荣誉:
+                </td>
+                <td colspan="4">
+                    <div class="rongyu">
+                        <div class="increase_inform_tl">
+                            <div class="increase_inform_tr">
+                                <div class="increase_inform_tm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="increase_inform_mlr">
+                            <div class="increase_inform_mm">
+                                @Html.TextAreaFor(Model => Model.Honour, new { style = "width: 555px; max-width: 555px; height: 133px; max-height: 133px;" })
+                            </div>
+                        </div>
+                        <div class="increase_inform_bl">
+                            <div class="increase_inform_br">
+                                <div class="increase_inform_bm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td colspan="3">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

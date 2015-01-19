@@ -1,0 +1,256 @@
+﻿@{var printInfo = ViewData["printInfo"] as ChangingMajors.DAL.Model.SysUserModel1;}
+<script type="text/javascript">
+    function doPrint() {
+        bdhtml = window.document.body.innerHTML;
+        sprnstr = "<!--startprint-->";
+        eprnstr = "<!--endprint-->";
+        prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+        prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+        window.document.body.innerHTML = prnhtml;
+
+        var tag = document.getElementsByTagName("div");
+        tag[0].style.cssText = "width:942px;margin:0px auto 0px 60px;font-size:25px;";
+        //tag[0].style.cssText = "width:942px;margin:0px auto;font-size:25px;";
+        tag[1].style.cssText = "font-size:28px;margin-bottom:30px;margin-top:0px;";
+        tag[3].style.cssText = "padding:0px;";
+        document.getElementsByTagName("body")[0].style.cssText = "background:#FFFFFF;";
+        window.print();
+    }
+</script>
+<script type="text/javascript">
+    var hkey_root, hkey_path, hkey_key;
+    hkey_root = "HKEY_CURRENT_USER";
+    hkey_path = "\\Software\\Microsoft\\Internet Explorer\\PageSetup\\";
+    //设置网页打印的页眉页脚为空
+    function pagesetup_null() {
+        try {
+            var RegWsh = new ActiveXObject("WScript.Shell");
+            hkey_key = "header";
+            RegWsh.RegWrite(hkey_root + hkey_path + hkey_key, "");
+            hkey_key = "footer";
+            RegWsh.RegWrite(hkey_root + hkey_path + hkey_key, "");
+        } catch (e) { }
+    }
+    //设置网页打印的页眉页脚为默认值
+    function pagesetup_default() {
+        try {
+            var RegWsh = new ActiveXObject("WScript.Shell");
+            hkey_key = "header";
+            RegWsh.RegWrite(hkey_root + hkey_path + hkey_key, "&w&b页码，&p/&P");
+            hkey_key = "footer";
+            RegWsh.RegWrite(hkey_root + hkey_path + hkey_key, "&u&b&d");
+        } catch (e) { }
+    }
+</script>
+<div class="apply">
+    <!--startprint-->
+    <div>
+        <div class="apply_title" style="font-size: 23px">
+            温州医科大学仁济学院学生转专业申请表</div>
+        <div>
+            <table id="Table1" class="applylist" align="center" width="100%">
+                <tbody>
+                    <tr>
+                        <td align="center" style="width: 16%">
+                            学号
+                        </td>
+                        <td style="width: 18%">
+                            <span id="xh">@Html.Encode(printInfo.UserNum)</span>
+                        </td>
+                        <td align="center" style="width: 16%">
+                            姓名
+                        </td>
+                        <td style="width: 17%">
+                            <span id="xm">@Html.Encode(printInfo.UserName)</span>
+                        </td>
+                        <td align="center" style="width: 16%">
+                            班级
+                        </td>
+                        <td style="width: 17%">
+                            <span id="bj">@Html.Encode(printInfo.UserClass)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            文理科
+                        </td>
+                        <td>
+                            <span id="xh">@Html.Encode(printInfo.UserArtsScience)</span>
+                        </td>
+                        <td align="center">
+                            原专业
+                        </td>
+                        <td>
+                            <span id="xm">@Html.Encode(printInfo.MajorName)</span>
+                        </td>
+                        <td align="center">
+                            学分加权平均分
+                        </td>
+                        <td>
+                            <span id="bj">@Html.Encode(printInfo.UserCreditWeightedAverage)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            专业排名
+                        </td>
+                        <td>
+                            <span id="xh">@Html.Encode(printInfo.UserMajorRanking)</span>
+                        </td>
+                        <td align="center">
+                            英语四级
+                        </td>
+                        <td>
+                            <span id="xm">@Html.Encode(printInfo.UserEnglishFour)</span>
+                        </td>
+                        <td align="center">
+                            英语六级
+                        </td>
+                        <td>
+                            <span id="bj">@Html.Encode(printInfo.UserEnglishSix)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            拟转入专业
+                        </td>
+                        <td>
+                            <span id="xh">@Html.Encode(printInfo.SysMajorName)</span>
+                        </td>
+                        <td align="center">
+                            原专业人数
+                        </td>
+                        <td>
+                            <span id="xm">@Html.Encode(printInfo.UserLastMajorNum)</span>
+                        </td>
+                        <td align="center">
+                            是否同意降级
+                        </td>
+                        <td>
+                            <span id="bj">@Html.Encode(printInfo.UserDemotion)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            生源地
+                        </td>
+                        <td>
+                            <span id="xh">@Html.Encode(printInfo.UserAddress)</span>
+                        </td>
+                        <td align="center">
+                            不及格课程
+                        </td>
+                        <td>
+                            <span id="xm">@Html.Encode(printInfo.UserFiledClass)</span>
+                        </td>
+                        <td align="center">
+                            纪律处分
+                        </td>
+                        <td>
+                            <span id="bj">@Html.Encode(printInfo.UserDisciplinaryAward)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            长号
+                        </td>
+                        <td colspan="2">
+                            <span id="xh">@Html.Encode(printInfo.UserLongPhone)</span>
+                        </td>
+                        <td align="center">
+                            短号
+                        </td>
+                        <td colspan="2">
+                            <span id="xm">@Html.Encode(printInfo.UserShortPhone)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            个人荣誉
+                        </td>
+                        <td colspan="5">
+                            <p>
+                                <span id="xh">@Html.Raw(printInfo.UserHonour)</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <p style="text-indent: 2em;">
+                                本人已了解转专业相关政策，确认上方表格中信息真实，并出自本人意愿。
+                            </p>
+                            <br />
+                            <span style="text-align: left; float: left">申请人签字：</span> <span style="text-align: right;
+                                float: right">年 &nbsp;&nbsp;月 &nbsp;&nbsp;日</span><br />
+                            <br />
+                        </td>
+                        <td colspan="3">
+                            <p style="text-indent: 2em;">
+                                本人了解学校的转专业的政策与转入专业收费情况，同意子女转专业。
+                            </p>
+                            <br />
+                            <span style="text-align: left; float: left">家长签字：</span> <span style="text-align: right;
+                                float: right">年 &nbsp;&nbsp;月 &nbsp;&nbsp;日</span><br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            辅导员意见
+                        </td>
+                        <td colspan="5">
+                            <p style="text-indent: 2em;">
+                                <span id="xh"></span>
+                            </p>
+                            <br />
+                            <br />
+                            <span style="text-align: left; float: left; padding-left: 40px;">签名：</span> <span
+                                style="text-align: right; float: right">年 &nbsp;&nbsp;月 &nbsp;&nbsp;日</span><br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            教务部意见
+                        </td>
+                        <td colspan="5">
+                            <p style="text-indent: 2em;">
+                                <span id="xh"></span>
+                            </p>
+                            <br />
+                            <br />
+                            <span style="text-align: left; float: left; padding-left: 40px;">签名：</span> <span
+                                style="text-align: left; float: left; padding-left: 100px;">盖章：</span> <span style="text-align: right;
+                                    float: right">年 &nbsp;&nbsp;月 &nbsp;&nbsp;日</span><br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            学院意见
+                        </td>
+                        <td colspan="5">
+                            <p style="text-indent: 2em;">
+                                <span id="xh"></span>
+                            </p>
+                            <br />
+                            <br />
+                            <span style="text-align: left; float: left; padding-left: 40px;">签名：</span> <span
+                                style="text-align: left; float: left; padding-left: 100px;">盖章：</span> <span style="text-align: right;
+                                    float: right">年 &nbsp;&nbsp;月 &nbsp;&nbsp;日</span><br />
+                            <br />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="apply_footer">
+            <p>
+                备注：1-专业排名为学分加权平均分排名。<br />
+                <span style="padding-left: 3em;">2-转专业后，按转入专业年级缴纳学费。</span></p>
+        </div>
+    </div>
+    <!--endprint-->
+    <div>
+        <a href="#" onclick="pagesetup_null();doPrint()">打印</a>
+    </div>
+</div>

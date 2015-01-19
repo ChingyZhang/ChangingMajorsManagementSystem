@@ -1,0 +1,275 @@
+﻿@{
+    var talbeValue = ViewData["collectTable"] as List<ChangingMajors.DAL.Entity.System_User>;
+}
+<script type="text/javascript">
+    //    function clickDownload() {
+    //        var major = $("#majorName").val();
+    //        var sysMajor = $("#sysMajorName").val();
+
+
+
+    //        location.href = "/Collect/CollectDownload?MajorName=" + major + "&SysMajorName=" + sysMajor;
+    //    }
+    $(function () {
+        var major = $("#MajorName").val();
+        var sysMajor = $("#sysMajorName").val();
+
+        $("#download").attr("href", "/Collect/CollectDownload?MajorName=" + major + "&SysMajorName=" + sysMajor);
+
+    })
+</script>
+<div class="panelBar">
+    汇总结果
+</div>
+<div style="width: 1195px; overflow: auto;">
+    <div style="width: 1485px;">
+        <div class="grid_header">
+            <div class="grid_header_offset">
+                <table cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td style="width: 21px;">
+                        </td>
+                        <td style="width: 100px;">
+                            <div class="grid_header_offset_inner">
+                                学号</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                姓名</div>
+                        </td>
+                        <td style="width: 35px;">
+                            <div class="grid_header_offset_inner">
+                                性别</div>
+                        </td>
+                        <td style="width: 150px;">
+                            <div class="grid_header_offset_inner">
+                                班级</div>
+                        </td>
+                        <td style="width: 150px;">
+                            <div class="grid_header_offset_inner">
+                                籍贯</div>
+                        </td>
+                        <td style="width: 35px;">
+                            <div class="grid_header_offset_inner">
+                                文理</div>
+                        </td>
+                        <td style="width: 150px;">
+                            <div class="grid_header_offset_inner">
+                                原专业</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                原专业排名</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                原专业人数</div>
+                        </td>
+                        <td style="width: 90px;">
+                            <div class="grid_header_offset_inner">
+                                学分加权平均分</div>
+                        </td>
+                        <td style="width: 60px;">
+                            <div class="grid_header_offset_inner">
+                                英语四级</div>
+                        </td>
+                        <td style="width: 60px;">
+                            <div class="grid_header_offset_inner">
+                                英语六级</div>
+                        </td>
+                        <td style="width: 150px;">
+                            <div class="grid_header_offset_inner">
+                                拟转入专业</div>
+                        </td>
+                        <td style="width: 80px;">
+                            <div class="grid_header_offset_inner">
+                                是否同意降级</div>
+                        </td>
+                        <td style="width: 70px;">
+                            <div class="grid_header_offset_inner">
+                                不及格课程</div>
+                        </td>
+                        <td style="width: 60px;">
+                            <div class="grid_header_offset_inner">
+                                记录处分</div>
+                        </td>
+                        <td style="width: 75px;">
+                            <div class="grid_header_offset_inner">
+                                长号</div>
+                        </td>
+                        <td style="width: 45px;">
+                            <div class="grid_header_offset_inner">
+                                短号</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        @if (talbeValue != null)
+        {
+            for (int i = 0; i < talbeValue.Count; i++)
+            {
+            <div class="grid_list control_td_width" style="max-height: 271px; overflow: auto;">
+                <div class="grid_list_row">
+                    <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0">
+                        <tr>
+                            <td style="width: 21px;" class="grid_list_row_numberer">
+                                <div class="grid_list_row_inner1">
+                                    @Html.Encode(i + 1)</div>
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_num)</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_name)</div>
+                            </td>
+                            <td style="width: 35px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (talbeValue[i].user_sex == 0)
+                                    {
+                                        @Html.Encode("女")
+                                    }
+                                    else
+                                    { 
+                                        @Html.Encode("男")
+                                    }
+                                </div>
+                            </td>
+                            <td style="width: 150px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_class)
+                                </div>
+                            </td>
+                            <td style="width: 150px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_address)</div>
+                            </td>
+                            <td style="width: 35px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (talbeValue[i].user_arts_science == 0)
+                                    {
+                                        @Html.Encode("文科")
+                                    }
+                                    else
+                                    {
+                                        @Html.Encode("理科")
+                                    }
+                                </div>
+                            </td>
+                            <td style="width: 150px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].major_name)
+                                </div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_major_ranking)</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_last_major_num)</div>
+                            </td>
+                            <td style="width: 93px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_credit_weighted_average)</div>
+                            </td>
+                            <td style="width: 60px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_english_level_four)</div>
+                            </td>
+                            <td style="width: 60px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_english_level_six)</div>
+                            </td>
+                            <td style="width: 150px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].sys_major_name)</div>
+                            </td>
+                            <td style="width: 80px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (talbeValue[i].user_demotion == 0)
+                                    {
+                                        @Html.Encode("不同意")
+                                    }
+                                    else
+                                    { 
+                                        @Html.Encode("同意")
+                                    }</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (talbeValue[i].user_flied_class == 0)
+                                    {
+                                        @Html.Encode("无")
+                                    }
+                                    else
+                                    { 
+                                        @Html.Encode("有")
+                                    }</div>
+                            </td>
+                            <td style="width: 60px;">
+                                <div class="grid_list_row_inner2">
+                                    @if (talbeValue[i].user_disciplinary_award == 0)
+                                    {
+                                        @Html.Encode("无")
+                                    }
+                                    else
+                                    { 
+                                        @Html.Encode("有")
+                                    }</div>
+                            </td>
+                            <td style="width: 70px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_long_phone)</div>
+                            </td>
+                            <td style="width: 45px;">
+                                <div class="grid_list_row_inner2">
+                                    @Html.Encode(talbeValue[i].user_short_phone)</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    
+            }
+            @Ajax.PageLinks(ViewData["pageInfo"] as ChangingMajorsManagementSystem.Models.PageInfo,
+        index => Url.Action("CollectTablePageInfo", new
+        {
+            page = index,
+            MajorName = ViewData["majorname"].ToString(),
+            SysMajorName = ViewData["SysMajorName"].ToString()
+        }), new AjaxOptions
+        {
+            UpdateTargetId = "collectTable",
+            HttpMethod = "POST"
+        }, new { })
+            
+        }
+        else
+        {
+            <div class="grid_list" style="max-height: 271px; overflow: auto;">
+                <div class="grid_list_row">
+                    <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="grid_list_row_numberer">
+                                @Html.Encode("无数据")
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@if (talbeValue != null)
+{
+    <div class="searchbox" style="background: #F2F6FB; border-bottom: 1px solid #B8D0D6;
+        border-top: 1px solid #B8D0D6;">
+        <div class="button" style="padding-top: 5px; color:Red;">
+            <a  id="download" href="#"><span>下载</span></a>&nbsp;&nbsp;&nbsp;&nbsp;请勿用迅雷下载</div>
+    </div>
+}
+
+

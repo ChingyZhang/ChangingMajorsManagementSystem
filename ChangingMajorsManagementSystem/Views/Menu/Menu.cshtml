@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+@{var pour = ViewData["Pour"].ToString();}
+@if (pour == "0")
+{
+    @Html.Partial("MenuAdm")
+}
+else
+{
+    @Html.Partial("MenuStu")
+}

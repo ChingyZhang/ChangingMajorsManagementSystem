@@ -1,0 +1,196 @@
+﻿@model ChangingMajorsManagementSystem.Models.UserInfoModel
+<script type="text/javascript">
+    $(function () {
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('main');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                $('#select_info_' + selects[i].name).attr("class", "tag_select");
+                $('#boxul_' + selects[i].name).css("display", "none");
+            }
+        }
+
+        if ($("#ShortPhone").val() == "") {
+            $("#ShortPhone").val("无");
+        }
+
+        if ('@ViewData["Msg"]' != "") {
+            $('#ui-dialog').html('@ViewData["Msg"]');
+            $('#ui-dialog').dialog({
+                show: "explode",
+                hide: "explode",
+                resizable: false,
+                title: "提示"
+            });
+        }
+    });
+    function setValue() {
+        var list = $("#applyTable").find("input");
+        var flag = true;
+        for (var i = 0; i < list.length; i++) {
+            if ($(list[i]).val() == "") {
+                if ($(list[i]).attr("id") == "ShortPhone") {
+                    $(list[i]).val("无");
+                }
+                else
+                    flag = false;
+            }
+        }
+        if (flag) {
+            $("#StuApplySubForm").submit();
+        }
+        else {
+            alert("除了个人荣誉外,其余都是必填项");
+        }
+    }
+</script>
+<div id="applyTable">
+    @using (Ajax.BeginForm("StuApply1", "Apply", null,
+new AjaxOptions
+{
+    UpdateTargetId = "applyTable",
+    HttpMethod = "POST",
+}, new { id = "StuApplySubForm" }))
+    {
+        <div class="searchbox" style="background: #F2F6FB; height: 447px;">
+            <table cellpadding="5px" cellspacing="5px" border="0px">
+                <tr>
+                    <td>
+                        学号:
+                    </td>
+                    <td>
+                        <div class="input">
+                            @Html.TextBoxFor(Model => Model.UserNum, new { @readonly = "readonly" })
+                        </div>
+                    </td>
+                    <td rowspan="6" width="50px">
+                    </td>
+                    <td>
+                        姓名:
+                    </td>
+                    <td>
+                        <div class="input">
+                            @Html.TextBoxFor(Model => Model.UserName, new { @readonly = "readonly" })
+                        </div>
+                    </td>
+                    <td rowspan="6" width="50px">
+                    </td>
+                    <td>
+                        籍贯:
+                    </td>
+                    <td>
+                        <div class="input">
+                            @Html.TextBoxFor(Model => Model.UserAddress)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        长号:
+                    </td>
+                    <td>
+                        <div class="input">
+                            @Html.TextBoxFor(Model => Model.LongPhone)
+                        </div>
+                    </td>
+                    <td>
+                        短号:
+                    </td>
+                    <td>
+                        <div class="input">
+                            @Html.TextBoxFor(Model => Model.ShortPhone)
+                        </div>
+                    </td>
+                    <td>
+                        拟转专业名称:
+                    </td>
+                    <td>
+                        @{var major = ViewData["major"] as SelectList; }
+                        @if (major == null)
+                        {
+                            <div class="input">
+                                @Html.TextBox("当前无发进入转专业", "当前无发进行转专业", new { @readonly = "readonly" })
+                            </div>
+                        }
+                        else
+                        { 
+                            <div class="uboxstyle">
+                                @Html.DropDownList("SysMajorName1", major)
+                            </div>
+         
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        是否有处分
+                    </td>
+                    <td>
+                        @{var fileClass = ViewData["FileClass"] as SelectList;}
+                        @if (fileClass == null)
+                        {
+                            <div class="input">
+                                @Html.TextBox("当前无数据", "当前无数据")
+                            </div>
+                        }
+                        else
+                        { 
+                            <div class="uboxstyle">
+                                @Html.DropDownList("UserDisciplinaryAward1", fileClass)
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        是否同意降级:
+                    </td>
+                    <td>
+                        @{var demotion = ViewData["demotion"] as SelectList;}
+                        @if (demotion == null)
+                        {
+                            <div class="input">
+                                @Html.TextBox("当前无专业数据", "当前无专业数据")
+                            </div>
+                        }
+                        else
+                        { 
+                            <div class="uboxstyle">
+                                @Html.DropDownList("UserDemotion1", demotion)
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="padding-top: 10px;">
+                        个人荣誉:
+                    </td>
+                    <td colspan="4">
+                        <div class="rongyu">
+                            <div class="increase_inform_tl">
+                                <div class="increase_inform_tr">
+                                    <div class="increase_inform_tm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="increase_inform_mlr">
+                                <div class="increase_inform_mm">
+                                    @Html.TextAreaFor(Model => Model.Honour, new { style = "width: 555px; max-width: 555px; height: 133px; max-height: 133px;" })
+                                </div>
+                            </div>
+                            <div class="increase_inform_bl">
+                                <div class="increase_inform_br">
+                                    <div class="increase_inform_bm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td colspan="3">
+                    </td>
+                </tr>
+            </table>
+            <div class="button" style="padding-top: 20px;">
+                <a href="#" id="sub" onclick="setValue();"><span>提交</span></a></div>
+        </div>
+    }
+</div>

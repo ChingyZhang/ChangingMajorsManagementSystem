@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChangingMajorsManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ChangingMajorsManagementSystemModelStoreContainer">
+    <EntitySet Name="System_Majors" EntityType="ChangingMajorsManagementSystemModel.Store.System_Majors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="System_User" EntityType="ChangingMajorsManagementSystemModel.Store.System_User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="system_user_detail" EntityType="ChangingMajorsManagementSystemModel.Store.system_user_detail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="system_user_manager" EntityType="ChangingMajorsManagementSystemModel.Store.system_user_manager" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_ChangingMajors_Start" EntityType="ChangingMajorsManagementSystemModel.Store.User_ChangingMajors_Start" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Entry" EntityType="ChangingMajorsManagementSystemModel.Store.User_Entry" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Notice" EntityType="ChangingMajorsManagementSystemModel.Store.User_Notice" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_SYSTEM_U_REFERENCE_SYSTEM_U" Association="ChangingMajorsManagementSystemModel.Store.FK_SYSTEM_U_REFERENCE_SYSTEM_U">
+      <End Role="system_user_manager" EntitySet="system_user_manager" />
+      <End Role="System_User" EntitySet="System_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ENT_REFERENCE_USER_CHA" Association="ChangingMajorsManagementSystemModel.Store.FK_USER_ENT_REFERENCE_USER_CHA">
+      <End Role="User_ChangingMajors_Start" EntitySet="User_ChangingMajors_Start" />
+      <End Role="User_Entry" EntitySet="User_Entry" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="System_Majors">
+    <Key>
+      <PropertyRef Name="major_id" />
+    </Key>
+    <Property Name="major_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="major_name" Type="varchar" MaxLength="100" />
+    <Property Name="major_art_science" Type="int" />
+    <Property Name="major_flag" Type="int" />
+    <Property Name="major_date" Type="varchar" MaxLength="20" />
+    <Property Name="major_num" Type="int" />
+    <Property Name="major_start_flag" Type="int" />
+  </EntityType>
+  <EntityType Name="System_User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="upload_id" Type="int" />
+    <Property Name="user_num" Type="varchar" MaxLength="50" />
+    <Property Name="user_password" Type="varchar" MaxLength="50" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_sex" Type="int" />
+    <Property Name="user_class" Type="varchar" MaxLength="100" />
+    <Property Name="user_arts_science" Type="int" />
+    <Property Name="user_address" Type="varchar" MaxLength="50" />
+    <Property Name="user_demotion" Type="int" />
+    <Property Name="user_flied_class" Type="int" />
+    <Property Name="user_disciplinary_award" Type="int" />
+    <Property Name="user_long_phone" Type="varchar" MaxLength="20" />
+    <Property Name="user_short_phone" Type="varchar" MaxLength="20" />
+    <Property Name="user_honour" Type="varchar" />
+    <Property Name="user_power" Type="int" />
+    <Property Name="user_flag" Type="int" />
+    <Property Name="user_date" Type="varchar" MaxLength="50" />
+    <Property Name="user_apply_flag" Type="int" />
+    <Property Name="user_email" Type="varchar" MaxLength="500" />
+    <Property Name="major_name" Type="varchar" MaxLength="100" />
+    <Property Name="sys_major_name" Type="varchar" MaxLength="100" />
+    <Property Name="user_major_id" Type="varchar" MaxLength="50" />
+    <Property Name="user_sys_major_id" Type="varchar" MaxLength="50" />
+    <Property Name="user_english_level_four" Type="varchar" MaxLength="50" />
+    <Property Name="user_english_level_six" Type="varchar" MaxLength="50" />
+    <Property Name="user_last_major_num" Type="varchar" MaxLength="50" />
+    <Property Name="user_credit_weighted_average" Type="varchar" MaxLength="50" />
+    <Property Name="user_major_ranking" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="system_user_detail">
+    <Key>
+      <PropertyRef Name="detail_id" />
+    </Key>
+    <Property Name="detail_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_num" Type="varchar" MaxLength="50" />
+    <Property Name="user_major_ranking" Type="varchar" MaxLength="50" />
+    <Property Name="user_major_num" Type="varchar" MaxLength="50" />
+    <Property Name="user_credit_weighted_average" Type="varchar" MaxLength="50" />
+    <Property Name="detail_date" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="system_user_manager">
+    <Key>
+      <PropertyRef Name="upload_id" />
+    </Key>
+    <Property Name="upload_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="upload_date" Type="varchar" MaxLength="50" />
+    <Property Name="upload_state" Type="varchar" MaxLength="50" />
+    <Property Name="upload_num" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User_ChangingMajors_Start">
+    <Key>
+      <PropertyRef Name="start_id" />
+    </Key>
+    <Property Name="start_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="start_date" Type="varchar" MaxLength="20" />
+    <Property Name="start_flag" Type="int" />
+    <Property Name="user_num" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="User_Entry">
+    <Key>
+      <PropertyRef Name="entry_id" />
+    </Key>
+    <Property Name="entry_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="start_id" Type="int" />
+    <Property Name="user_num" Type="varchar" MaxLength="20" />
+    <Property Name="major_name" Type="varchar" MaxLength="50" />
+    <Property Name="sys_major_name" Type="varchar" MaxLength="50" />
+    <Property Name="entry_state" Type="int" />
+    <Property Name="entry_flag" Type="int" />
+    <Property Name="major_id" Type="varchar" MaxLength="50" />
+    <Property Name="sys_major_id" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User_Notice">
+    <Key>
+      <PropertyRef Name="notice_id" />
+    </Key>
+    <Property Name="notice_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="notice_title" Type="varchar" MaxLength="200" />
+    <Property Name="notice_detail" Type="varchar" />
+    <Property Name="notice_date" Type="varchar" MaxLength="50" />
+    <Property Name="notice_flag" Type="int" />
+    <Property Name="notice_file" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK_SYSTEM_U_REFERENCE_SYSTEM_U">
+    <End Role="system_user_manager" Type="ChangingMajorsManagementSystemModel.Store.system_user_manager" Multiplicity="0..1" />
+    <End Role="System_User" Type="ChangingMajorsManagementSystemModel.Store.System_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="system_user_manager">
+        <PropertyRef Name="upload_id" />
+      </Principal>
+      <Dependent Role="System_User">
+        <PropertyRef Name="upload_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ENT_REFERENCE_USER_CHA">
+    <End Role="User_ChangingMajors_Start" Type="ChangingMajorsManagementSystemModel.Store.User_ChangingMajors_Start" Multiplicity="0..1" />
+    <End Role="User_Entry" Type="ChangingMajorsManagementSystemModel.Store.User_Entry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_ChangingMajors_Start">
+        <PropertyRef Name="start_id" />
+      </Principal>
+      <Dependent Role="User_Entry">
+        <PropertyRef Name="start_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

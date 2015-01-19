@@ -1,0 +1,140 @@
+﻿@model ChangingMajorsManagementSystem.Models.UserQueryModel
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Student/UpdateStu',
+            data: {},
+            success: function (data) {
+                $("#delectTable").html(data);
+            }
+        });
+    });
+
+    $(function () {
+        var year = GetYear2();
+        $('#uploadify1').uploadify({
+            //以下参数均是可选
+            //'buttonText': '选择文件...',
+            'scriptData': {
+                'Year': year
+            },
+            'buttonImg': '../../Scripts/uploadify1.4.6/scan.png',
+            'uploader': '../../Scripts/uploadify1.4.6/uploadify.swf', //指定上传控件的主体文件，默认‘uploader.swf’
+            //            'folder': 'Attachment', //要上传到的服务器路径，默认‘/’
+            'script': '/Student/UploadStu', //上传文件的后台处理页面(这个没有页面,是一个contentResult 这个页面要写...
+            'cancelImg': '../../Scripts/uploadify1.4.6/cancel.png', //指定取消上传的图片，默认‘cancel.png’
+            'width': 46,
+            'height': 23,
+            'auto': false, //选定文件后是否自动上传，默认false
+            //                'method': 'POST',
+            'method': 'POST',
+            'queueID': 'fileQueue1',
+            'multi': true, //是否允许同时上传多文件，默认false
+            'fileDesc': 'xlsx文件', //出现在上传对话框中的文件类型描述
+            'fileExt': '*.xlsx;', //控制可上传文件的扩展名，文件启用本项时需同时声明fileDesc
+            'sizeLimit': 1024 * 1024 * 1024, //控制上传文件的大小，单位byte
+            //'wmode': 'transparent',
+            //'rollover':true
+            //'removeCompleted':false
+            'simUploadLimit': 1, //多文件上传时，同时上传文件数目限制
+            'queueSizeLimit': 1,
+            //'onProgress': onProgress,
+            'onCancel': function () {
+
+            },
+            //                    'onSelect': function (e, queueID, fileObj) {
+            //                        debugger;
+            //                    },
+            'onComplete': fun,
+            'onError': function (event, queueID, fileObj) {
+                //debugger;
+                alert("文件:" + fileObj.name + " 上传失败");
+            }
+        });
+
+
+        var year = $("#select_info_year3").html();
+        if (isNaN(year)) {
+            $("#addStu").find("#uploadify1Uploader").css("display", "none");
+            $("#addStu").find("#NoUpload").css("display", ""); ;
+        }
+        else {
+            $("#addStu").find("#uploadify1Uploader").css("display", "");
+            $("#addStu").find("#NoUpload").css("display", "none"); ;
+        }
+    });
+
+    function GetUserID() {
+        var userID = $("#userid").attr("name");
+        return userID;
+    }
+
+    function GetYear2() {
+        var select = $("#year3").val();
+        return select;
+    }
+
+
+    function fun(event, queueID, fileObj, response, data) {
+
+        if (response != "") {
+            $("#fileQueue1", $("#addStu")).find(".cancel").remove();
+            showInfo("成功上传" + response, true); //showInfo方法设置上传结果   
+        }
+        else {
+            showInfo("文件" + fileObj.name + "上传出错", false);
+        }
+    }
+
+    function removeCanel() {
+        $("#fileQueue1", $("#addStu")).find(".cancel").remove();
+    }
+</script>
+
+<div id="addStu">
+
+    <div>
+        <div class="panelBar">
+            学生数据上传</div>
+        <div class="searchbox" style="background: #F2F6FB; border-bottom: 1px solid #B8D0D6;">
+            <table cellpadding="5px" cellspacing="5px" border="0px">
+                <tr>
+                    <td>
+                        选择文件：
+                    </td>
+                    <td>
+                        <div>
+                            <input type="file" style="padding-left: 0px; cursor: pointer; border: none;" name="uploadify"
+                                id="uploadify1" />
+                            <input id="NoUpload" type="image" src="../../Scripts/uploadify1.4.6/noscan.png" style="display: none;" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <div id="fileQueue1">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="button" style="padding-left: 0px; padding-top: 20px; float: left;">
+                            <a href="javascript:$('#uploadify1').uploadifyUpload()" onclick="removeCanel()"><span>
+                                上传</span></a></div>
+                    </td>
+                    <td>
+                        <div class="button" style="padding-left: 20px; padding-top: 20px; float: left;">
+                            <a href="javascript:$('#uploadify1').uploadifyClearQueue()"><span>取消</span></a></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="delectTable">
+</div>
+@*<div id="tableOfAddStu">
+</div>*@ 

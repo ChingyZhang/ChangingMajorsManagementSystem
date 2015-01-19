@@ -1,0 +1,213 @@
+﻿
+@model ChangingMajorsManagementSystem.Models.UserQueryModel
+<script type="text/javascript">
+    $(function () {
+        //archbox 中的 select 事件
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('tableControl');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                //alert(selects[i].name);
+                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                //                                $("#select_info_" + selects[i].name).attr("class", "tag_select");
+                //                                $("#options_" + selects[i].name).css("display", "none");
+                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+                //			$('select_info_' + selects[i].name).className = 'tag_select';
+                //			$('options_' + selects[i].name).style.display = 'none';
+            }
+        }
+        //archbox 中的 select 事件
+    });
+    function setValue() {
+        var majorName = $("#select_info_majorNameOfAddStu").attr("value");
+        $("#MajorName").val(majorName);
+        $("#AddStuForm").submit();
+    }
+
+
+    function GoDetail() {
+        var id = $("#submitButton").attr("name").toString();
+        //        alert(id);
+        $.ajax({
+            type: 'POST',
+            url: '/Student/StuDetailTable',
+            data: { "UserID": id },
+            success: function (data) {
+                $("#stuDetailTable,#StuDetailTable").html(data);
+            }
+        });
+    }
+</script>
+<div id="tableControl">
+    @using (Ajax.BeginForm("AddStuTable", "Student", null,
+
+    new AjaxOptions
+     {
+         UpdateTargetId = "pageAddStu",
+         HttpMethod = "POST",
+     }, new { id = "AddStuForm" }))
+    { 
+        <table cellpadding="5px" cellspacing="5px" border="0px">
+            <tr>
+                <td>
+                    @Html.LabelFor(Model => Model.UserNum)
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserNum)
+                    </div>
+                </td>
+                <td>
+                    @Html.LabelFor(Model => Model.UserName)
+                </td>
+                <td>
+                    <div class="input">
+                        @Html.TextBoxFor(Model => Model.UserName)
+                    </div>
+                </td>
+                <td>
+                    @Html.LabelFor(Model => Model.MajorName)
+                </td>
+                <td>
+                    @{var addStu = ViewData["major"] as SelectList;}
+                    @if (addStu != null)
+                    {
+                        <div class="uboxstyle">
+                            @Html.DropDownList("majorNameOfAddStu", addStu)
+                        </div>
+                        @Html.Hidden("MajorName")
+                    }
+                    else
+                    {
+                        @Html.TextBox("aasfasa", "请先录入专业数据")
+                    }
+                </td>
+                <td>
+                    <div class="button">
+                        <a href="#" onclick="setValue()"><span>查询</span></a></div>
+                </td>
+            </tr>
+        </table>
+    }
+    <div class="panelBar">
+        查询结果</div>
+    <div class="grid_header">
+        <div class="grid_header_offset">
+            @{ var userInfo = ViewData["UserInfo"] as List<ChangingMajors.DAL.Entity.System_User>;}
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td width="21px">
+                    </td>
+                    <td width="15%">
+                        <div class="grid_header_offset_inner">
+                            学号</div>
+                    </td>
+                    <td width="10%">
+                        <div class="grid_header_offset_inner">
+                            姓名</div>
+                    </td>
+                    <td width="10%">
+                        <div class="grid_header_offset_inner">
+                            性别</div>
+                    </td>
+                    <td width="15%">
+                        <div class="grid_header_offset_inner">
+                            班级</div>
+                    </td>
+                    <td width="15%">
+                        <div class="grid_header_offset_inner">
+                            籍贯</div>
+                    </td>
+                    <td width="15%">
+                        <div class="grid_header_offset_inner">
+                            原专业名称</div>
+                    </td>
+                    <td width="15%">
+                        <div class="grid_header_offset_inner">
+                            拟专业名称</div>
+                    </td>
+                    @* <td width="10%">
+                    <div class="grid_header_offset_inner">
+                        备注</div>
+                </td>*@
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="grid_list">
+        <div class="grid_list_row">
+            <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                @if (userInfo != null)
+                {
+                    for (int i = 0; i < userInfo.Count; i++)
+                    {
+                    <tr>
+                        <td width="21px" class="grid_list_row_numberer">
+                            <div class="grid_list_row_inner1">
+                                @Html.Encode(i + 1)
+                            </div>
+                        </td>
+                        <td width="15%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(userInfo[i].user_num)
+                            </div>
+                        </td>
+                        <td width="10%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(userInfo[i].user_name)
+                            </div>
+                        </td>
+                        <td width="10%">
+                            <div class="grid_list_row_inner2">
+                                @if (userInfo[i].user_sex == 0)
+                                {
+                                    @Html.Encode("女")
+                                }
+                                else
+                                {
+                                    @Html.Encode("男")
+                                }
+                            </div>
+                        </td>
+                        <td width="15%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(userInfo[i].user_class)
+                            </div>
+                        </td>
+                        <td width="15%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(userInfo[i].user_address)
+                            </div>
+                        </td>
+                        <td width="15%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(userInfo[i].major_name)
+                            </div>
+                        </td>
+                        <td width="15%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(userInfo[i].sys_major_name)
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+        
+                    <tr>
+                        <td>
+                            查无可匹配数据
+                        </td>
+                    </tr>
+                }
+            </table>
+            @Ajax.PageLinks(ViewData["pageInfo"] as ChangingMajorsManagementSystem.Models.PageInfo, index => Url.Action("AddStuTablePage", new { page = index, MajorName = ViewData["majorname"], UserName = ViewData["UserName"].ToString(), UserNum = ViewData["UserNum"].ToString() }), new AjaxOptions { UpdateTargetId = "tableControl", HttpMethod = "POST" }, new { })
+        </div>
+    </div>
+</div>

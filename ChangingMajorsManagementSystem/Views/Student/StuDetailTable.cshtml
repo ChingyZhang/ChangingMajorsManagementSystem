@@ -1,0 +1,232 @@
+﻿@model ChangingMajorsManagementSystem.Models.UserInfoModel
+<script type="text/javascript">
+    $(function () {
+        //archbox 中的 select 事件
+        bodyclick = document.getElementsByTagName('body').item(0);
+        init('PartailStuManage');
+        rSelects();
+        bodyclick.onclick = function () {
+            for (i = 0; i < selects.length; i++) {
+                //alert(selects[i].name);
+                document.getElementById('select_info_' + selects[i].name).className = 'tag_select';
+                //                                $("#select_info_" + selects[i].name).attr("class", "tag_select");
+                //                                $("#options_" + selects[i].name).css("display", "none");
+                document.getElementById('boxul_' + selects[i].name).style.display = 'none';
+                //			$('select_info_' + selects[i].name).className = 'tag_select';
+                //			$('options_' + selects[i].name).style.display = 'none';
+            }
+        }
+        //archbox 中的 select 事件
+
+        if ('@ViewData["Msg"]' != "") {
+            $('#ui-dialog').html('@ViewData["Msg"]');
+            $('#ui-dialog').dialog({
+                show: "explode",
+                hide: "explode",
+                resizable: false,
+                title: "提示"
+            });
+        }
+        $.ajax({
+            type: "GET",
+            url: "/Student/AdmAlterUserPsw",
+            data: { "userNum": $("#UserNum").val() },
+            success: function (data) {
+                $("#ManageAlterUserPsw").html(data);
+            }
+        });
+
+
+    });
+
+
+
+    function setValue() {
+        $("#StuDetailTableSubForm").submit();
+    }
+</script>
+<div id="PartailStuDetail">
+    <div class="panelBar">
+        查询结果</div>
+    @if (Model.UserNum == null)
+    {
+        @Html.Encode("无数据")
+    }
+    else
+    { 
+        <div class="searchbox" style="background: #F2F6FB; border-bottom: 1px solid #B8D0D6;">
+            @using (Ajax.BeginForm("StuDetailTableSub", "Student", null,
+new AjaxOptions
+{
+    UpdateTargetId = "stuDetailTable",
+    HttpMethod = "POST",
+}, new { id = "StuDetailTableSubForm" }))
+            {
+                <table cellpadding="5px" cellspacing="5px" border="0px">
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.UserNum)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.UserNum, new { @readonly = "readonly" })</div>
+                        </td>
+                        <td rowspan="6" width="50px">
+                        </td>
+                        <td>
+                            @Html.LabelFor(m => m.UserName)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.UserName)</div>
+                        </td>
+                        <td rowspan="6" width="50px">
+                        </td>
+                        <td>
+                            @Html.LabelFor(m => m.UserAddress)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.UserAddress)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        @{
+                           var disciplinaryAward = ViewData["DisciplinaryAward"] as SelectList;
+                           var fileClass = ViewData["FileClass"] as SelectList;
+                        }
+                        <td>
+                            @Html.LabelFor(m => m.UserDisciplinaryAward)
+                        </td>
+                        @if (fileClass == null)
+                        {
+                            <td>
+                                <div class="input">
+                                    @Html.TextBox("当前无数据", "当前无数据")</div>
+                            </td>
+                        }
+                        else
+                        { 
+                            <td>
+                                <div class="uboxstyle">
+                                    @Html.DropDownList("UserDisciplinaryAward", disciplinaryAward)
+                                </div>
+                            </td>
+                        }
+                        <td>
+                            @Html.LabelFor(m => m.UserDemotion)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @if (Model.UserDemotion == "0")
+                                {
+                                    @Html.TextBox("UserDemotion", "不同意", new { @readonly = "readonly" })
+                                }
+                                else
+                                {
+                                    @Html.TextBox("UserDemotion", "同意", new { @readonly = "readonly" })
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(m => m.UserCreditWeightedAverage)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.UserCreditWeightedAverage)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.LongPhone)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.LongPhone)</div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(m => m.ShortPhone)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.ShortPhone)</div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(m => m.MajorRanking)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.MajorRanking)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.FiledClass)
+                        </td>
+                        @if (fileClass == null)
+                        {
+                            <td>
+                                <div class="input">
+                                    @Html.TextBox("当前无专业数据", "当前无专业数据")</div>
+                            </td>
+                        }
+                        else
+                        { 
+                            <td>
+                                <div class="uboxstyle">
+                                    @Html.DropDownList("FiledClass", fileClass)
+                                </div>
+                            </td>
+                        }
+                        <td>
+                            @Html.LabelFor(m => m.UserEnglishLevelFour)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.UserEnglishLevelFour)</div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(m => m.UserEnglishLevelSix)
+                        </td>
+                        <td>
+                            <div class="input">
+                                @Html.TextBoxFor(m => m.UserEnglishLevelSix)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-top: 10px;">
+                            个人荣誉:
+                        </td>
+                        <td colspan="4">
+                            <div class="rongyu">
+                                <div class="increase_inform_tl">
+                                    <div class="increase_inform_tr">
+                                        <div class="increase_inform_tm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="increase_inform_mlr">
+                                    <div class="increase_inform_mm">
+                                        @Html.TextAreaFor(m => m.Honour)
+                                    </div>
+                                </div>
+                                <div class="increase_inform_bl">
+                                    <div class="increase_inform_br">
+                                        <div class="increase_inform_bm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="3">
+                        </td>
+                    </tr>
+                </table>
+                <div class="button" style="padding-top: 20px;">
+                    <a href="#" id="sub" onclick="setValue();"><span>修改并提交</span></a></div>
+            }
+        </div>
+    }
+</div>
+<div id="ManageAlterUserPsw">
+</div>

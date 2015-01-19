@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChangingMajorsManagementSystemModelStoreContainer" CdmEntityContainer="ChangingMajorsManagementSystemEntities">
+    <EntitySetMapping Name="System_Majors">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.System_Majors">
+        <MappingFragment StoreEntitySet="System_Majors">
+          <ScalarProperty Name="major_id" ColumnName="major_id" />
+          <ScalarProperty Name="major_name" ColumnName="major_name" />
+          <ScalarProperty Name="major_art_science" ColumnName="major_art_science" />
+          <ScalarProperty Name="major_flag" ColumnName="major_flag" />
+          <ScalarProperty Name="major_date" ColumnName="major_date" />
+          <ScalarProperty Name="major_num" ColumnName="major_num" />
+          <ScalarProperty Name="major_start_flag" ColumnName="major_start_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_User">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.System_User">
+        <MappingFragment StoreEntitySet="System_User">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="upload_id" ColumnName="upload_id" />
+          <ScalarProperty Name="user_num" ColumnName="user_num" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+          <ScalarProperty Name="user_class" ColumnName="user_class" />
+          <ScalarProperty Name="user_arts_science" ColumnName="user_arts_science" />
+          <ScalarProperty Name="user_address" ColumnName="user_address" />
+          <ScalarProperty Name="user_demotion" ColumnName="user_demotion" />
+          <ScalarProperty Name="user_flied_class" ColumnName="user_flied_class" />
+          <ScalarProperty Name="user_disciplinary_award" ColumnName="user_disciplinary_award" />
+          <ScalarProperty Name="user_long_phone" ColumnName="user_long_phone" />
+          <ScalarProperty Name="user_short_phone" ColumnName="user_short_phone" />
+          <ScalarProperty Name="user_honour" ColumnName="user_honour" />
+          <ScalarProperty Name="user_power" ColumnName="user_power" />
+          <ScalarProperty Name="user_flag" ColumnName="user_flag" />
+          <ScalarProperty Name="user_date" ColumnName="user_date" />
+          <ScalarProperty Name="user_apply_flag" ColumnName="user_apply_flag" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="major_name" ColumnName="major_name" />
+          <ScalarProperty Name="sys_major_name" ColumnName="sys_major_name" />
+          <ScalarProperty Name="user_major_id" ColumnName="user_major_id" />
+          <ScalarProperty Name="user_sys_major_id" ColumnName="user_sys_major_id" />
+          <ScalarProperty Name="user_english_level_four" ColumnName="user_english_level_four" />
+          <ScalarProperty Name="user_english_level_six" ColumnName="user_english_level_six" />
+          <ScalarProperty Name="user_last_major_num" ColumnName="user_last_major_num" />
+          <ScalarProperty Name="user_credit_weighted_average" ColumnName="user_credit_weighted_average" />
+          <ScalarProperty Name="user_major_ranking" ColumnName="user_major_ranking" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="system_user_detail">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.system_user_detail">
+        <MappingFragment StoreEntitySet="system_user_detail">
+          <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+          <ScalarProperty Name="user_num" ColumnName="user_num" />
+          <ScalarProperty Name="user_major_ranking" ColumnName="user_major_ranking" />
+          <ScalarProperty Name="user_major_num" ColumnName="user_major_num" />
+          <ScalarProperty Name="user_credit_weighted_average" ColumnName="user_credit_weighted_average" />
+          <ScalarProperty Name="detail_date" ColumnName="detail_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="system_user_manager">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.system_user_manager">
+        <MappingFragment StoreEntitySet="system_user_manager">
+          <ScalarProperty Name="upload_id" ColumnName="upload_id" />
+          <ScalarProperty Name="upload_date" ColumnName="upload_date" />
+          <ScalarProperty Name="upload_state" ColumnName="upload_state" />
+          <ScalarProperty Name="upload_num" ColumnName="upload_num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_ChangingMajors_Start">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.User_ChangingMajors_Start">
+        <MappingFragment StoreEntitySet="User_ChangingMajors_Start">
+          <ScalarProperty Name="start_id" ColumnName="start_id" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="start_flag" ColumnName="start_flag" />
+          <ScalarProperty Name="user_num" ColumnName="user_num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Entry">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.User_Entry">
+        <MappingFragment StoreEntitySet="User_Entry">
+          <ScalarProperty Name="entry_id" ColumnName="entry_id" />
+          <ScalarProperty Name="start_id" ColumnName="start_id" />
+          <ScalarProperty Name="user_num" ColumnName="user_num" />
+          <ScalarProperty Name="major_name" ColumnName="major_name" />
+          <ScalarProperty Name="sys_major_name" ColumnName="sys_major_name" />
+          <ScalarProperty Name="entry_state" ColumnName="entry_state" />
+          <ScalarProperty Name="entry_flag" ColumnName="entry_flag" />
+          <ScalarProperty Name="major_id" ColumnName="major_id" />
+          <ScalarProperty Name="sys_major_id" ColumnName="sys_major_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Notice">
+      <EntityTypeMapping TypeName="ChangingMajorsManagementSystemModel.User_Notice">
+        <MappingFragment StoreEntitySet="User_Notice">
+          <ScalarProperty Name="notice_id" ColumnName="notice_id" />
+          <ScalarProperty Name="notice_title" ColumnName="notice_title" />
+          <ScalarProperty Name="notice_detail" ColumnName="notice_detail" />
+          <ScalarProperty Name="notice_date" ColumnName="notice_date" />
+          <ScalarProperty Name="notice_flag" ColumnName="notice_flag" />
+          <ScalarProperty Name="notice_file" ColumnName="notice_file" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

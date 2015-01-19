@@ -1,0 +1,267 @@
+﻿@model ChangingMajors.DAL.Entity.System_User
+<script type="text/javascript">
+    function deleteAffirm() {
+        $.ajax({
+            type: "POST",
+            url: "/Student/AdmDeleteStu",
+            data: { "userNum": $("#user_num").val(), "Date": $("#user_date").val() },
+            success: function (data) {
+                if (data.Flag) {
+                    $("#QueryResult").html("");
+                    $('#ui-dialog').html(data.Msg);
+                    $('#ui-dialog').dialog({
+                        show: "explode",
+                        hide: "explode",
+                        resizable: false,
+                        title: "提示"
+                    });
+                }
+                else {
+//                    $("#QueryResult").html("");
+                    $('#ui-dialog').html(data.Msg);
+                    $('#ui-dialog').dialog({
+                        show: "explode",
+                        hide: "explode",
+                        resizable: false,
+                        title: "提示"
+                    });
+                }
+            }
+        });
+    }           
+</script>
+<div class="panelBar">
+    查询结果</div>
+@if (Model == null)
+{
+    @Html.Encode("无数据") 
+}
+else
+{ 
+    <table cellpadding="5px" cellspacing="5px" border="0px">
+        <tr>
+            <td>
+                @Html.Label("学号")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_num)</div>
+            </td>
+            <td rowspan="6" width="50px">
+            </td>
+            <td>
+                @Html.Label("姓名")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_name)</div>
+            </td>
+            <td rowspan="6" width="50px">
+            </td>
+            <td>
+                @Html.Label("性别")
+            </td>
+            <td>
+                <div class="input">
+                    @if (Model.user_sex == 1)
+                    {
+                        @Html.TextBox("user_sex", "男")
+                    }
+                    else
+                    {
+                        @Html.TextBox("user_sex", "女")
+                    }
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("班级")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_class)
+                </div>
+            </td>
+            <td>
+                @Html.Label("文理科")
+            </td>
+            <td>
+                <div class="input">
+                    @if (Model.user_arts_science == 1)
+                    {
+                        @Html.TextBox("user_arts_science", "理科")
+                    }
+                    else
+                    { 
+                        @Html.TextBox("user_arts_science", "文科")
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.Label("籍贯")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_address)</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("是否同意降级")
+            </td>
+            <td>
+                <div class="input">
+                    @if (Model.user_demotion == 1)
+                    {
+                        @Html.TextBox("user_demotion", "同意")
+                    }
+                    else
+                    { 
+                        @Html.TextBox("user_demotion", "不同意")
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.Label("是否有不及格课程")
+            </td>
+            <td>
+                <div class="input">
+                    @if (Model.user_flied_class == 1)
+                    {
+                        @Html.TextBox("user_flied_class", "是")
+                    }
+                    else
+                    { 
+                        @Html.TextBox("user_flied_class", "否")
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.Label("是否有处分")
+            </td>
+            <td>
+                <div class="input">
+                    @if (Model.user_disciplinary_award == 1)
+                    {
+                        @Html.TextBox("user_disciplinary_award", "是")
+                    }
+                    else
+                    { 
+                        @Html.TextBox("user_disciplinary_award", "否")
+                    }
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("长号")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_long_phone)</div>
+            </td>
+            <td>
+                @Html.Label("短号")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_short_phone)</div>
+            </td>
+            <td>
+                @Html.Label("年份")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_date)</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("原专业")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.major_name)</div>
+            </td>
+            <td>
+                @Html.Label("拟转专业名称")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.sys_major_name)
+                </div>
+            </td>
+            <td>
+                @Html.Label("英语四级")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_english_level_four)</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("英语六级")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_english_level_six)</div>
+            </td>
+            <td>
+                @Html.Label("算术平均法")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_credit_weighted_average)</div>
+            </td>
+            <td>
+                @Html.Label("原专业人数")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_last_major_num)</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("专业排名")
+            </td>
+            <td>
+                <div class="input">
+                    @Html.TextBoxFor(m => m.user_major_ranking)</div>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" style="padding-top: 10px;">
+                个人荣誉:
+            </td>
+            <td colspan="4">
+                <div class="rongyu">
+                    <div class="increase_inform_tl">
+                        <div class="increase_inform_tr">
+                            <div class="increase_inform_tm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="increase_inform_mlr">
+                        <div class="increase_inform_mm">
+                            @Html.TextAreaFor(m => m.user_honour)
+                        </div>
+                    </div>
+                    <div class="increase_inform_bl">
+                        <div class="increase_inform_br">
+                            <div class="increase_inform_bm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td colspan="3">
+            </td>
+        </tr>
+    </table>
+    <div class="button">
+        <a href="#"><span onclick="deleteAffirm();">删除</span></a>
+    </div>
+}

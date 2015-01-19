@@ -1,0 +1,13 @@
+﻿ckeditor 实现发帖
+ckfinder 实现文件上传
+
+ckfinder/config.ascx 内BaseUrl 可设定上传文件的基本路径
+
+页面上用form submit组合表单上传时 不得引入MicrosoftAjax.js和MicrosoftMvcAjax.js脚本文件
+
+使用$.ajax是 action里的 RedirectToAction无效
+
+页面上 <script> editor.getData()  </script>  可以获得 fck的文本内容  注editor为fck实例
+
+需对以上获得的内容进行html转译  代码:CKEDITOR.tools.htmlEncode(editor.getData());
+页面上赋值时需在controller 中 反转 代码:  Server.HtmlDecode(/*数据库中读出的内容*/);

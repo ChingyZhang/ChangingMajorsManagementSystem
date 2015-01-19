@@ -1,0 +1,132 @@
+﻿@model ChangingMajors.DAL.Entity.User_ChangingMajors_Start
+<script type="text/javascript">
+    function aaclick(button) {
+        var id = $(button).attr("id");
+        $.ajax({
+            type: 'POST',
+            url: '/Start/EndApply',
+            data: { 'EndID': id },
+            success: function () {
+                F5();
+            }
+        });
+    }
+
+    function F5() {
+        $.ajax({
+            type: 'POST',
+            url: '/Start/StartApply',
+            success: function (data) {
+                $("#con6").html(data);
+            }
+        });
+
+    }
+</script>
+<div id="StartToEndTable">
+    <div class="panelBar">
+        发起报名信息</div>
+    <div class="grid_header">
+        <div class="grid_header_offset">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td width="21px">
+                    </td>
+                    <td width="15%">
+                        <div class="grid_header_offset_inner">
+                            编号</div>
+                    </td>
+                    <td width="20%">
+                        <div class="grid_header_offset_inner">
+                            发起人</div>
+                    </td>
+                    <td width="20%">
+                        <div class="grid_header_offset_inner">
+                            发起时间</div>
+                    </td>
+                    <td width="20%">
+                        <div class="grid_header_offset_inner">
+                            发起状态</div>
+                    </td>
+                    <td width="20%">
+                        <div class="grid_header_offset_inner">
+                            结束</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    @{var table = ViewData["table"] as List<ChangingMajors.DAL.Entity.User_ChangingMajors_Start>;}
+    @if (table.Count != 0)
+    {
+
+        for (int i = 0; i < table.Count; i++)
+        {
+        <div class="grid_list" style="max-height: 271px; overflow: auto;">
+            <div class="grid_list_row">
+                <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td width="21px" class="grid_list_row_numberer">
+                            @* <div class="grid_list_row_inner1">
+                                @Html.Encode(i + 1)</div>*@
+                        </td>
+                        <td width="15%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(table[i].start_id)</div>
+                        </td>
+                        <td width="20%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(table[i].user_num)</div>
+                        </td>
+                        <td width="20%">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(table[i].start_date)</div>
+                        </td>
+                        <td width="20%">
+                            <div class="grid_list_row_inner2">
+                                @if (table[i].start_flag == 1)
+                                {
+                                    @Html.Encode("已发起")
+                                }
+                                else
+                                {
+                                    @Html.Encode("未发起")
+                                }
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div class="grid_list_row_inner2">
+                                <a id="@Html.Encode(table[i].start_id)" onclick="aaclick(this)" href="#">结束</a></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        }
+    }
+    else
+    {
+        <div class="grid_list" style="max-height: 271px; overflow: auto;">
+            <div class="grid_list_row">
+                <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td>
+                            无数据
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+    <div class="searchbox" style="background: #F2F6FB; border-bottom: 1px solid #B8D0D6;
+        height: 17px;">
+    </div>
+</div>
+@if (table.Count != 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#allStart").html($("#StartToEndTable").html());
+        });
+    </script>
+}

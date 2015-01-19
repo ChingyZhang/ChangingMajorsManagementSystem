@@ -1,0 +1,121 @@
+﻿<script type="text/javascript">
+    function deleteMajor(tag) {
+        $.ajax({
+            type: "POST",
+            url: $(tag).attr("url"),
+            success: function (data) {
+                if (data.Flag) {
+                    $(tag).parent().parent().remove();
+                    alert("删除成功");
+                }
+                else {
+                    alert("删除失败");
+                }
+            }
+        });
+    }
+</script>
+<div id="MajorsTable">
+    @{
+        var list = ViewData["MajorsList"] as List<ChangingMajors.DAL.Entity.System_Majors>;
+    }
+    <div class="panelBar">
+        查询结果
+    </div>
+    <div class="grid_header">
+        <div class="grid_header_offset">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td style="width: 2%;">
+                        <div class="grid_header_offset_inner">
+                        </div>
+                    </td>
+                    <td style="width: 33%;">
+                        <div class="grid_header_offset_inner">
+                            专业名称</div>
+                    </td>
+                    <td style="width: 25%;">
+                        <div class="grid_header_offset_inner">
+                            文理科</div>
+                    </td>
+                    <td style="width: 20%;">
+                        <div class="grid_header_offset_inner">
+                            人数</div>
+                    </td>
+                    <td style="width: 20%;">
+                        <div class="grid_header_offset_inner">
+                            操作</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    @if (list.Count != 0)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+        <div class="grid_list" style="max-height: 271px; overflow: auto;">
+            <div class="grid_list_row">
+                <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="width: 2%;" class="grid_list_row_numberer">
+                            <div class="grid_list_row_inner1">
+                                @Html.Encode(i + 1)</div>
+                        </td>
+                        <td style="width: 33%;">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(list[i].major_name)</div>
+                        </td>
+                        <td style="width: 25%;">
+                            <div class="grid_list_row_inner2">
+                                @if (list[i].major_art_science == 1)
+                                {
+                                    @Html.Encode("理科")
+                                }
+                                else
+                                {
+                                    @Html.Encode("文科")
+                                }
+                            </div>
+                        </td>
+                        <td style="width: 20%;">
+                            <div class="grid_list_row_inner2">
+                                @Html.Encode(list[i].major_num)
+                            </div>
+                        </td>
+                        <td style="width: 20%;">
+                            <a href="#" url="/Major/DeleteMajor?majorId=@list[i].major_id" onclick="deleteMajor(this);" style="text-decoration: underline;">
+                                删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        }
+    }
+    else
+    {
+        <div class="grid_list" style="max-height: 271px; overflow: auto;">
+            <div class="grid_list_row">
+                <table class="grid_list_row_table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td class="grid_list_row_numberer">
+                            <div class="grid_list_row_inner1">
+                                @Html.Encode("无数据")</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    }
+    @Ajax.PageLinks(ViewData["pageInfo"] as ChangingMajorsManagementSystem.Models.PageInfo, index => Url.Action("MajorsTable", new
+{
+    page = index,
+    year = ViewData["year"]
+}), new AjaxOptions
+{
+    UpdateTargetId = "MajorManageUI",
+    HttpMethod = "POST"
+}, new { })
+</div>
